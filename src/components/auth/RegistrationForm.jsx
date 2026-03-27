@@ -50,7 +50,7 @@ const RegistrationForm = () => {
         <div className="mt-10 text-center">
           <p className="font-body text-sm text-on-surface-variant">
             Already have an account? 
-            <Link to="/" className="text-primary-container font-bold hover:text-secondary transition-colors underline underline-offset-8 decoration-secondary/30 ml-1">Sign In</Link>
+            <Link to="/signin" className="text-primary-container font-bold hover:text-secondary transition-colors underline underline-offset-8 decoration-secondary/30 ml-1">Sign In</Link>
           </p>
         </div>
       </div>

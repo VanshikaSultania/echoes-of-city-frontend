@@ -8,7 +8,7 @@ const ArchiveCTA = () => {
       <p className="max-w-2xl mx-auto text-on-surface-variant text-lg mb-12">Register today to gain full access to high-resolution blueprints, oral histories, and exclusive virtual tours of the city's private estates.</p>
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
         <Link to="/signup" className="bg-primary-container text-on-primary-container px-10 py-4 rounded-lg font-medium text-lg scale-100 hover:scale-105 active:scale-95 transition-transform text-center cursor-pointer">Sign Up for Access</Link>
-        <Link to="/" className="border border-outline text-primary px-10 py-4 rounded-lg font-medium text-lg hover:bg-surface-container-high transition-colors scale-100 hover:scale-105 active:scale-95 transition-transform text-center cursor-pointer">Sign In</Link>
+        <Link to="/signin" className="border border-outline text-primary px-10 py-4 rounded-lg font-medium text-lg hover:bg-surface-container-high transition-colors scale-100 hover:scale-105 active:scale-95 transition-transform text-center cursor-pointer">Sign In</Link>
       </div>
     </div>
   );
