@@ -13,7 +13,7 @@ const Navbar = () => {
           <a className="text-[#4A0404]/70 dark:text-[#f6f3ed]/70 hover:text-[#4A0404] dark:hover:text-white transition-colors duration-300" href="#">About</a>
         </div>
         <div className="flex items-center gap-6">
-          <button className="font-label text-xs uppercase tracking-widest text-[#4A0404]/70 hover:text-[#4A0404] transition-colors">Sign In</button>
+          <Link to="/signin" className="font-label text-xs uppercase tracking-widest text-[#4A0404]/70 hover:text-[#4A0404] transition-colors">Sign In</Link>
           <Link to="/signup" className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg text-sm font-medium scale-95 active:scale-90 transition-transform">Sign Up</Link>
         </div>
       </div>
