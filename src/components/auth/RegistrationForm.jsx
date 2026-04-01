@@ -13,15 +13,9 @@ const RegistrationForm = () => {
 
         {/* Registration Form */}
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-1">
-              <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="full_name">Full Name</label>
-              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="full_name" name="full_name" placeholder="Sir Ronald Ross" type="text"/>
-            </div>
-            <div className="space-y-1">
-              <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="phone">Phone (Optional)</label>
-              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="phone" name="phone" placeholder="+91 000 000 0000" type="tel"/>
-            </div>
+          <div className="space-y-1">
+            <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="username">Username</label>
+            <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="username" name="username" placeholder="explorer123" type="text"/>
           </div>
 
           <div className="space-y-1">
