@@ -15,11 +15,11 @@ const LoginForm = () => {
       <form className="space-y-6">
         <div>
           <label className="block text-xs font-semibold tracking-widest text-stone-500 uppercase mb-2">
-            Email Address
+            Username
           </label>
           <input
-            type="email"
-            placeholder="archivist@heritage.in"
+            type="text"
+            placeholder="explorer123"
             className="w-full px-4 py-3 bg-transparent border border-stone-300 focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-500 transition-colors placeholder:text-stone-200"
           />
         </div>
