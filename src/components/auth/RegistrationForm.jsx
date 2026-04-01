@@ -20,17 +20,17 @@ const RegistrationForm = () => {
 
           <div className="space-y-1">
             <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="email">Email Address</label>
-            <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="email" name="email" placeholder="explorer@heritage.in" type="email"/>
+            <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="email" name="email" placeholder="explorer@heritage.in" type="email" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-1">
               <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="password">Password</label>
-              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="password" name="password" placeholder="••••••••" type="password"/>
+              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="password" name="password" placeholder="••••••••" type="password" />
             </div>
             <div className="space-y-1">
               <label className="block font-label text-[0.7rem] uppercase tracking-widest text-on-surface-variant font-medium" htmlFor="confirm_password">Confirm Password</label>
-              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="confirm_password" name="confirm_password" placeholder="••••••••" type="password"/>
+              <input className="w-full bg-transparent border-0 border-b border-outline-variant py-2.5 focus:ring-0 focus:border-secondary transition-colors text-on-surface placeholder:text-on-surface/30 px-1 outline-none" id="confirm_password" name="confirm_password" placeholder="••••••••" type="password" />
             </div>
           </div>
 
@@ -43,8 +43,8 @@ const RegistrationForm = () => {
 
         <div className="mt-10 text-center">
           <p className="font-body text-sm text-on-surface-variant">
-            Already have an account? 
-            <Link to="/" className="text-primary-container font-bold hover:text-secondary transition-colors underline underline-offset-8 decoration-secondary/30 ml-1">Sign In</Link>
+            Already have an account?
+            <Link to="/signin" className="text-primary-container font-bold hover:text-secondary transition-colors underline underline-offset-8 decoration-secondary/30 ml-1">Sign In</Link>
           </p>
         </div>
       </div>
