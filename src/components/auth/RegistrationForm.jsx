@@ -73,7 +73,7 @@ const RegistrationForm = () => {
     setError(''); // clear error on input change
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault();
     setError('');
 
