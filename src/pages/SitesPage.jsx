@@ -1,0 +1,20 @@
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import CollectionHero from '../components/sites/CollectionHero';
+import SiteGrid from '../components/sites/SiteGrid';
+
+const SitesPage = () => {
+  return (
+    <div className="bg-[#fbf9f6] min-h-screen text-stone-900 font-sans flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <CollectionHero />
+        <SiteGrid />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default SitesPage;
