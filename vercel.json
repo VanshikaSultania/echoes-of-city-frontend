@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/google-maps-api/:match*",
+      "destination": "https://maps.googleapis.com/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
