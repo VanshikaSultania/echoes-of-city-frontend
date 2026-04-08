@@ -1,7 +1,113 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const PLACE_ID = "ChIJN1ZKKUkWrjsRzxIVM363-LE"; // Bangalore Palace
+const DESTINATION_LAT_LNG = "12.9988,77.5921"; // Bangalore Palace
+
+// Haversine formula for straight-line distance
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return (R * c).toFixed(1);
+};
 
 const SiteDetailsPage = () => {
   const galleryRef = useRef(null);
+  const [distanceData, setDistanceData] = useState(null);
+  const [placeData, setPlaceData] = useState(null);
+  const [mapsError, setMapsError] = useState(null);
+  const [isMapsLoading, setIsMapsLoading] = useState(true);
+  const [showAllReviews, setShowAllReviews] = useState(false);
+  const [nearbyPlaces, setNearbyPlaces] = useState({ restaurant: null, hotel: null, hospital: null });
+  const [isNearbyLoading, setIsNearbyLoading] = useState(true);
+  const [userLocation, setUserLocation] = useState(null);
+
+  const getDistanceText = (place) => {
+    if (!place || !place.geometry || !place.geometry.location) return "Nearby";
+    const dist = calculateDistance(
+      12.9988, 77.5921, 
+      place.geometry.location.lat, 
+      place.geometry.location.lng
+    );
+    return `${dist} km away`;
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchMapsData = async () => {
+      try {
+        setIsMapsLoading(true);
+        setMapsError(null);
+
+        // 1. Fetch Place Details (Rating & Reviews)
+        const placeUrl = `/google-maps-api/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews,user_ratings_total&key=${API_KEY}`;
+        const placeRes = await axios.get(placeUrl);
+        
+        if (placeRes.data.status !== "OK") {
+           throw new Error(placeRes.data.error_message || `Places API Error: ${placeRes.data.status}`);
+        }
+        
+        if (isMounted) {
+            setPlaceData(placeRes.data.result);
+        }
+
+        // 1.5 Fetch Nearby Places (Restaurant, Hotel, Hospital)
+        setIsNearbyLoading(true);
+        const types = ['restaurant', 'lodging', 'hospital'];
+        const nearbyPromises = types.map(type => 
+          axios.get(`/google-maps-api/maps/api/place/nearbysearch/json?location=${DESTINATION_LAT_LNG}&radius=3000&type=${type}&key=${API_KEY}`)
+            .then(res => res.data.status === "OK" ? res.data.results[0] : null)
+            .catch(() => null)
+        );
+        const [restaurant, hotel, hospital] = await Promise.all(nearbyPromises);
+        if (isMounted) {
+          setNearbyPlaces({ restaurant, hotel, hospital });
+        }
+
+        // 2. Fetch Distance Matrix (if geolocation available)
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              const originLatLng = `${position.coords.latitude},${position.coords.longitude}`;
+              if (isMounted) setUserLocation(originLatLng);
+              const distUrl = `/google-maps-api/maps/api/distancematrix/json?origins=${originLatLng}&destinations=${DESTINATION_LAT_LNG}&key=${API_KEY}`;
+              
+              try {
+                const distRes = await axios.get(distUrl);
+                if (distRes.data.status !== "OK") {
+                    console.error("Distance API Error:", distRes.data.error_message);
+                } else if (distRes.data.rows[0].elements[0].status === "OK") {
+                    if (isMounted) setDistanceData(distRes.data.rows[0].elements[0]);
+                }
+              } catch (err) {
+                 console.error("Failed to fetch distance", err);
+              }
+            },
+            (error) => {
+              console.warn("Geolocation denied or unavailable:", error.message);
+            }
+          );
+        }
+
+      } catch (err) {
+        if (isMounted) setMapsError(err.message);
+      } finally {
+        if (isMounted) {
+          setIsMapsLoading(false);
+          setIsNearbyLoading(false);
+        }
+      }
+    };
+
+    fetchMapsData();
+
+    return () => { isMounted = false; };
+  }, []);
 
   const scrollGallery = (direction) => {
     if (galleryRef.current) {
@@ -197,26 +303,40 @@ const SiteDetailsPage = () => {
             <div className="flex items-start gap-4 mb-10 border-l border-on-surface-variant pl-6">
               <span className="material-symbols-outlined mt-1">location_on</span>
               <div>
-                <p className="text-[10px] tracking-widest uppercase text-on-surface-variant mb-1">FROM CITY CENTER</p>
-                <p className="font-headline text-2xl italic text-on-surface mb-2">Approx. 5.2 km</p>
+                <p className="text-[10px] tracking-widest uppercase text-on-surface-variant mb-1">
+                  {distanceData ? "FROM YOUR LOCATION" : "FROM CITY CENTER"}
+                </p>
+                <p className="font-headline text-2xl italic text-on-surface mb-2">
+                  {distanceData ? `${distanceData.distance.text} (${distanceData.duration.text})` : "Approx. 5.2 km"}
+                </p>
                 <p className="text-sm font-light text-on-surface-variant">Vasanth Nagar, Bengaluru, 560052</p>
               </div>
             </div>
-
-            <div className="bg-surface p-6 shadow-sm border border-outline-variant flex items-center justify-between cursor-pointer hover:bg-surface-variant transition-colors">
-              <div className="flex items-center gap-4">
-                <span className="material-symbols-outlined text-primary">directions</span>
-                <div>
-                  <p className="text-[10px] tracking-widest uppercase text-on-surface-variant">PLAN YOUR VISIT</p>
-                  <p className="font-headline italic text-xl">Get directions to the palace...</p>
-                </div>
+            {mapsError && (
+              <div className="text-xs text-error mb-6 bg-error-container p-3 rounded">
+                Map API Error: {mapsError}
               </div>
-              <span className="material-symbols-outlined">arrow_forward</span>
-            </div>
+            )}
+
+
           </div>
 
           <div className="w-full md:w-2/3 h-[400px] md:h-[500px] bg-surface-variant overflow-hidden p-3 bg-surface shadow-xl">
-            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80" alt="Map Styling" className="w-full h-full object-cover grayscale opacity-80" />
+            <iframe
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'grayscale(0.6) opacity(0.9)', transition: 'filter 0.5s ease' }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src={
+                userLocation
+                  ? `https://www.google.com/maps/embed/v1/directions?key=${API_KEY}&origin=${userLocation}&destination=${DESTINATION_LAT_LNG}`
+                  : `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${DESTINATION_LAT_LNG}`
+              }
+              onMouseEnter={(e) => { e.currentTarget.style.filter = 'grayscale(0) opacity(1)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.filter = 'grayscale(0.6) opacity(0.9)'; }}
+            ></iframe>
           </div>
         </div>
       </section>
@@ -224,25 +344,96 @@ const SiteDetailsPage = () => {
       {/* Section: Refining the Experience */}
       <section className="py-24 px-8 md:px-16 max-w-7xl mx-auto">
         <h2 className="font-headline text-3xl md:text-4xl italic text-on-surface mb-2">Refining the Experience</h2>
-        <p className="text-[10px] tracking-widest uppercase text-on-surface-variant mb-12">CURATED SUGGESTIONS & NEARBY ATTRACTIONS</p>
+        <p className="text-[10px] tracking-widest uppercase text-on-surface-variant mb-12">LIVE NEARBY RECOMMENDATIONS</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col">
-            <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors">park</span>
-            <h3 className="font-headline text-2xl italic mb-3">Cubbon Park</h3>
-            <p className="text-sm font-light text-on-surface-variant leading-relaxed">The city's green lung, located just 3km away, offering a serene escape after your tour.</p>
-          </div>
-          <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col">
-            <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors">restaurant_menu</span>
-            <h3 className="font-headline text-2xl italic mb-3">Windsor Pub</h3>
-            <p className="text-sm font-light text-on-surface-variant leading-relaxed">Historic dining spot nearby, serving traditional Bangalore fare and colonial-era classics.</p>
-          </div>
-          <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col">
-            <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors">bed</span>
-            <h3 className="font-headline text-2xl italic mb-3">Shangri-La Hotel</h3>
-            <p className="text-sm font-light text-on-surface-variant leading-relaxed">Luxury accommodation within 1km, offering panoramic views of the palace grounds.</p>
-          </div>
-        </div>
+        {isNearbyLoading ? (
+            <div className="py-12 flex justify-center items-center text-on-surface-variant text-sm">
+                <span className="material-symbols-outlined animate-spin mr-3">progress_activity</span>
+                Extracting Local Insights...
+            </div>
+        ) : mapsError ? (
+            <div className="py-12 flex justify-center items-center text-error text-sm border border-error-container p-6 rounded bg-surface">
+                <span className="material-symbols-outlined mr-3 text-2xl">error</span>
+                Could not load recommendations.
+            </div>
+        ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Restaurant */}
+              <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
+                <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">restaurant_menu</span>
+                <h3 className="font-headline text-2xl italic mb-3 relative z-10">
+                  {nearbyPlaces.restaurant ? nearbyPlaces.restaurant.name : "Windsor Pub"}
+                </h3>
+                <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-4 relative z-10">
+                  {nearbyPlaces.restaurant ? `Top rated local dining spot located nearby. ${nearbyPlaces.restaurant.rating ? `Earned ${nearbyPlaces.restaurant.rating} stars.` : ''}` : "Historic dining spot nearby, serving traditional Bangalore fare."}
+                </p>
+                {nearbyPlaces.restaurant && (
+                  <div className="flex items-center justify-between mt-auto relative z-10 w-full">
+                    {nearbyPlaces.restaurant.rating && (
+                      <div className="flex items-center text-xs font-bold tracking-widest text-secondary">
+                        <span className="material-symbols-outlined text-[14px] mr-1">star</span>
+                        {nearbyPlaces.restaurant.rating} RATING
+                      </div>
+                    )}
+                    <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto">
+                       <span className="material-symbols-outlined text-[12px] mr-1">location_on</span>
+                       {getDistanceText(nearbyPlaces.restaurant)}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Hotel */}
+              <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
+                <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">bed</span>
+                <h3 className="font-headline text-2xl italic mb-3 relative z-10">
+                  {nearbyPlaces.hotel ? nearbyPlaces.hotel.name : "Shangri-La Hotel"}
+                </h3>
+                <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-4 relative z-10">
+                  {nearbyPlaces.hotel ? `Premium accommodation in the vicinity to rest during your visit. ${nearbyPlaces.hotel.rating ? `Currently seated at a ${nearbyPlaces.hotel.rating} star average.` : ''}` : "Luxury accommodation within 1km, offering panoramic views."}
+                </p>
+                {nearbyPlaces.hotel && (
+                  <div className="flex items-center justify-between mt-auto relative z-10 w-full">
+                    {nearbyPlaces.hotel.rating && (
+                      <div className="flex items-center text-xs font-bold tracking-widest text-secondary">
+                        <span className="material-symbols-outlined text-[14px] mr-1">star</span>
+                        {nearbyPlaces.hotel.rating} RATING
+                      </div>
+                    )}
+                    <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto">
+                       <span className="material-symbols-outlined text-[12px] mr-1">location_on</span>
+                       {getDistanceText(nearbyPlaces.hotel)}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Hospital */}
+              <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
+                <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">local_hospital</span>
+                <h3 className="font-headline text-2xl italic mb-3 relative z-10">
+                  {nearbyPlaces.hospital ? nearbyPlaces.hospital.name : "Fortis Hospital"}
+                </h3>
+                <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-4 relative z-10">
+                  {nearbyPlaces.hospital ? `Trusted medical facility located nearby for peace of mind during your travels.` : "Reliable medical facility located nearby for emergencies."}
+                </p>
+                {nearbyPlaces.hospital && (
+                  <div className="flex items-center justify-between mt-auto relative z-10 w-full">
+                    {nearbyPlaces.hospital.rating && (
+                      <div className="flex items-center text-xs font-bold tracking-widest text-secondary">
+                        <span className="material-symbols-outlined text-[14px] mr-1">star</span>
+                        {nearbyPlaces.hospital.rating} RATING
+                      </div>
+                    )}
+                    <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto">
+                       <span className="material-symbols-outlined text-[12px] mr-1">location_on</span>
+                       {getDistanceText(nearbyPlaces.hospital)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+        )}
       </section>
 
       {/* Section: Voices of History */}
@@ -252,50 +443,57 @@ const SiteDetailsPage = () => {
             <h2 className="font-headline text-3xl md:text-4xl italic text-on-surface mb-4">Voices of History</h2>
             <div className="flex items-center gap-3">
               <div className="flex text-secondary opacity-90 text-sm">
-                <span className="material-symbols-outlined text-[18px]">star</span>
-                <span className="material-symbols-outlined text-[18px]">star</span>
-                <span className="material-symbols-outlined text-[18px]">star</span>
-                <span className="material-symbols-outlined text-[18px]">star</span>
-                <span className="material-symbols-outlined text-[18px]">star_half</span>
+                 {[1,2,3,4,5].map(star => (
+                   <span key={star} className="material-symbols-outlined text-[18px]">
+                     {placeData?.rating >= star ? 'star' : placeData?.rating >= star - 0.5 ? 'star_half' : 'star_outline'}
+                   </span>
+                 ))}
               </div>
-              <span className="font-headline italic text-xl">4.8 / 5</span>
-              <span className="text-[10px] tracking-widest uppercase text-on-surface-variant ml-2 border-l border-outline-variant pl-4">(424 REVIEWS)</span>
+              <span className="font-headline italic text-xl">{placeData ? placeData.rating : "4.8"} / 5</span>
+              <span className="text-[10px] tracking-widest uppercase text-on-surface-variant ml-2 border-l border-outline-variant pl-4">
+                ({placeData ? placeData.user_ratings_total : "424"} REVIEWS)
+              </span>
             </div>
           </div>
-          <a href="#" className="hidden md:inline-flex text-[10px] tracking-widest font-medium uppercase text-on-surface-variant hover:text-primary transition-colors pb-1 border-b border-outline-variant hover:border-primary mt-6 md:mt-0">
-            READ ALL REVIEWS
-          </a>
+          <button 
+            onClick={(e) => { e.preventDefault(); setShowAllReviews(!showAllReviews); }}
+            className="hidden md:inline-flex text-[10px] tracking-widest font-medium uppercase text-on-surface-variant hover:text-primary transition-colors pb-1 border-b border-outline-variant hover:border-primary mt-6 md:mt-0"
+          >
+            {showAllReviews ? "SHOW LESS REVIEWS" : "READ ALL REVIEWS"}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-surface-container-lowest border border-outline-variant p-8 relative">
-            <span className="material-symbols-outlined absolute top-6 right-6 text-4xl text-surface-dim opacity-30">format_quote</span>
-            <p className="font-light text-on-surface-variant leading-relaxed mb-8 pr-8">
-              "Walking through the ballroom felt like stepping into another era. The wood carvings and the sheer scale of the palace are breathtaking. A must-visit for anyone who loves architecture."
-            </p>
-            <div className="flex items-center gap-4">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Reviewer" className="w-12 h-12 rounded-full object-cover" />
-              <div>
-                <p className="font-headline italic text-lg text-on-surface">Divya Varma</p>
-                <p className="text-[10px] tracking-widest uppercase text-on-surface-variant">HISTORIAN, MUMBAI</p>
-              </div>
+        {isMapsLoading ? (
+            <div className="py-12 flex justify-center items-center text-on-surface-variant text-sm">
+                <span className="material-symbols-outlined animate-spin mr-3">progress_activity</span>
+                Loading Live Google Maps Reviews...
             </div>
-          </div>
-
-          <div className="bg-surface-container-lowest border border-outline-variant p-8 relative">
-            <span className="material-symbols-outlined absolute top-6 right-6 text-4xl text-surface-dim opacity-30">format_quote</span>
-            <p className="font-light text-on-surface-variant leading-relaxed mb-8 pr-8">
-              "The gardens are impeccably maintained. Even in the middle of a bustling city like Bangalore, this place offers a silent majesty that is hard to find elsewhere."
-            </p>
-            <div className="flex items-center gap-4">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Reviewer" className="w-12 h-12 rounded-full object-cover" />
-              <div>
-                <p className="font-headline italic text-lg text-on-surface">John Guha</p>
-                <p className="text-[10px] tracking-widest uppercase text-on-surface-variant">VISITOR FROM UK</p>
-              </div>
+        ) : mapsError ? (
+            <div className="py-12 flex justify-center items-center text-error text-sm border border-error-container p-6 rounded bg-surface">
+                <span className="material-symbols-outlined mr-3 text-2xl">error</span>
+                Could not load live reviews: {mapsError}
             </div>
+        ) : placeData && placeData.reviews ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+             {placeData.reviews.slice(0, showAllReviews ? placeData.reviews.length : 2).map((review, idx) => (
+               <div key={idx} className="bg-surface-container-lowest border border-outline-variant p-8 relative">
+                 <span className="material-symbols-outlined absolute top-6 right-6 text-4xl text-surface-dim opacity-30">format_quote</span>
+                 <p className="font-light text-on-surface-variant leading-relaxed mb-8 pr-8 line-clamp-4">
+                   "{review.text}"
+                 </p>
+                 <div className="flex items-center gap-4">
+                   <img src={review.profile_photo_url || "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Portrait_Placeholder.png/150px-Portrait_Placeholder.png"} alt="Reviewer" className="w-12 h-12 rounded-full object-cover" />
+                   <div>
+                     <p className="font-headline italic text-lg text-on-surface">{review.author_name}</p>
+                     <p className="text-[10px] tracking-widest uppercase text-on-surface-variant">{review.relative_time_description}</p>
+                   </div>
+                 </div>
+               </div>
+             ))}
           </div>
-        </div>
+        ) : (
+          <div className="py-8 text-on-surface-variant text-sm">No reviews available.</div>
+        )}
       </section>
 
       {/* Footer */}
