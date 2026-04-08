@@ -8,7 +8,8 @@ const mockSites = [
     title: "Bangalore Palace",
     description: "Modeled after Windsor Castle, this Tudor-style marvel features fortified towers, battlements, and turrets that whisper stories of the Wodeyar dynasty.",
     imageSrc: "https://images.pexels.com/photos/23973679/pexels-photo-23973679.jpeg",
-    imageAlt: "Bangalore Palace"
+    imageAlt: "Bangalore Palace",
+    url: "/site-details"
   },
   {
     id: 2,

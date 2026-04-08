@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SiteCard = ({ imageSrc, imageAlt, typeTag, title, description, url }) => {
+  const navigate = useNavigate();
+  
   return (
     <div className="flex flex-col bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-64 overflow-hidden group">
@@ -22,7 +25,7 @@ const SiteCard = ({ imageSrc, imageAlt, typeTag, title, description, url }) => {
           {description}
         </p>
         <button
-          onClick={() => window.location.href = url || "#"}
+          onClick={() => url ? navigate(url) : null}
           className="w-full bg-[#2a0e0e] text-white py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#1a0808] transition-colors flex items-center justify-center gap-2"
         >
           Explore Now

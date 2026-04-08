@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import RegistrationPage from './pages/RegistrationPage';
 import SigninPage from './pages/SigninPage';
 import SitesPage from './pages/SitesPage';
+import SiteDetailsPage from './pages/SiteDetailsPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signup" element={<RegistrationPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/sites" element={<SitesPage />} />
+        <Route path="/site-details" element={<SiteDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
