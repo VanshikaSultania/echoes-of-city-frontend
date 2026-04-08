@@ -9,7 +9,7 @@ const mockSites = [
     description: "Modeled after Windsor Castle, this Tudor-style marvel features fortified towers, battlements, and turrets that whisper stories of the Wodeyar dynasty.",
     imageSrc: "https://images.pexels.com/photos/23973679/pexels-photo-23973679.jpeg",
     imageAlt: "Bangalore Palace",
-    url: "/site-details"
+    url: "/site/bangalore-palace"
   },
   {
     id: 2,
@@ -17,7 +17,8 @@ const mockSites = [
     title: "Tipu Sultan's Palace",
     description: "A summer retreat known as 'Rash-e-Jannat' (Envy of Heaven). Built entirely of teakwood with magnificent pillars and floral motifs.",
     imageSrc: "https://media.istockphoto.com/id/178845414/photo/tipu-sultans-summer-palace.jpg?s=612x612&w=0&k=20&c=QCVIS7GrgLfh8MaBmdjrQFNeQ71BgP-K322BJVkGTmo=",
-    imageAlt: "Tipu Sultan Palace"
+    imageAlt: "Tipu Sultan Palace",
+    url: "/site/tipu-sultan-palace"
   },
   {
     id: 3,

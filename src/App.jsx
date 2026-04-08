@@ -14,7 +14,7 @@ function App() {
         <Route path="/signup" element={<RegistrationPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/sites" element={<SitesPage />} />
-        <Route path="/site-details" element={<SiteDetailsPage />} />
+        <Route path="/site/:id" element={<SiteDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );
