@@ -115,7 +115,7 @@ const LoginForm = () => {
       storage.setItem('token', data.token);
       storage.setItem('user_id', String(data.user_id));
 
-      navigate('/dashboard');
+      navigate('/sites');
     } catch {
       setError('Network error. Please check your connection.');
     } finally {
