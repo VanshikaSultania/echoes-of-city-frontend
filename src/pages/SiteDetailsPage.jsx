@@ -120,6 +120,8 @@ const SiteDetailsPage = () => {
 
   const themeText = siteData.theme.textRoot;
   const themeBorder = siteData.theme.borderLight;
+  const metricText = siteData.metricTextColor || themeText;
+  const subtitleText = siteData.heroSubtitleColor || themeText;
 
   return (
     <div className="font-body text-on-surface bg-surface min-h-screen">
@@ -141,7 +143,7 @@ const SiteDetailsPage = () => {
             <h1 className={`font-headline text-6xl md:text-8xl lg:text-[130px] italic leading-tight md:leading-none mb-6 drop-shadow-lg ${siteData.heroTitleWeight || 'font-bold'} ${siteData.heroTitleColor || themeText}`}>
               {siteData.title[0]} <br /> {siteData.title[1]}
             </h1>
-            <p className={`text-xl md:text-2xl font-light opacity-100 max-w-2xl mb-16 tracking-wide drop-shadow-md ${themeText}`}>
+            <p className={`text-xl md:text-2xl font-light opacity-100 max-w-2xl mb-16 tracking-wide drop-shadow-md ${subtitleText}`}>
               {siteData.subtitle}
             </p>
 
@@ -149,8 +151,8 @@ const SiteDetailsPage = () => {
               <div className={`grid grid-cols-2 md:grid-cols-${siteData.metrics.length > 3 ? '4' : '3'} gap-8 md:gap-12 pt-10 border-t ${themeBorder}`}>
                 {siteData.metrics.map((metric, idx) => (
                   <div key={idx} className={metric.span ? "col-span-2 md:col-span-1 border-t md:border-transparent pt-6 md:pt-0" : ""}>
-                    <p className={`text-[10px] tracking-widest uppercase opacity-90 mb-2 font-bold ${themeText}`}>{metric.label}</p>
-                    <p className={`font-headline italic text-3xl font-medium drop-shadow-sm ${themeText}`}>{metric.value}</p>
+                    <p className={`text-[10px] tracking-widest uppercase opacity-90 mb-2 font-bold ${metricText}`}>{metric.label}</p>
+                    <p className={`font-headline italic text-3xl font-medium drop-shadow-sm ${metricText}`}>{metric.value}</p>
                   </div>
                 ))}
               </div>
