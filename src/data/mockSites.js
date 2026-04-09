@@ -50,6 +50,7 @@ export const mockSites = [
     description: "The 'Lung of the City' featuring 300 acres of botanical diversity, statues of luminaries, and red-stone colonial libraries.",
     imageSrc: "https://karnatakatourism.org/_next/image/?url=https%3A%2F%2Fweb-cms.karnatakatourism.org%2Fwp-content%2Fuploads%2F2025%2F06%2FIMG_3526-1-scaled-e1750679261602.jpg&w=3840&q=75",
     imageAlt: "Cubbon Park Library",
+    url: "/site/cubbon-park",
     lat: 12.9765,
     lng: 77.5946
   },

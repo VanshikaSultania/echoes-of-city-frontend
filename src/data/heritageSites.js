@@ -130,7 +130,7 @@ export const heritageSites = {
   },
   "bull-temple": {
     id: "bull-temple",
-    placeId: "ChIJW-X-t4gUrjsRo3nO-YlY-_0",
+    placeId: "ChIJX9XqWswVrjsRRH3ymQ8yCDQ",
     latLng: "12.9416,77.5683",
     heroImage: "https://temple.yatradham.org/public/Product/temple/temple_hzOxj2OQ_202408171754050.jpeg",
     title: ["Bull", "Temple"],
@@ -166,6 +166,48 @@ export const heritageSites = {
       "https://st.depositphotos.com/3141445/4279/i/450/depositphotos_42790933-stock-photo-bull-temple-bangalore.jpg"
     ],
     address: "Bugle Rock Rd, Basavanagudi, Bengaluru, 560004",
+    theme: {
+      textRoot: "text-[#eeeae2]", 
+      borderLight: "border-[#eeeae2]/30"
+    }
+  },
+  "cubbon-park": {
+    id: "cubbon-park",
+    placeId: "ChIJL2fQ53MWrjsRuN9D6aalLMY",
+    latLng: "12.9765,77.5946",
+    heroImage: "https://karnatakatourism.org/_next/image/?url=https%3A%2F%2Fweb-cms.karnatakatourism.org%2Fwp-content%2Fuploads%2F2025%2F06%2FIMG_3526-1-scaled-e1750679261602.jpg&w=3840&q=75",
+    title: ["Cubbon", "Park"],
+    heroTitleWeight: "font-black",
+    subtitle: "The Lung of the City",
+    metrics: [
+      { label: "ESTABLISHED", value: "1870" },
+      { label: "AREA", value: "300 Acres" },
+      { label: "COMMISSIONED BY", value: "Maj. Gen. Richard Sankey", span: true }
+    ],
+    history: {
+      title: "An Eden in the\nHeart of the Metropolis",
+      paragraphs: [
+        "Originally spanning 100 acres, this historic park was commissioned in 1870 by Major General Richard Sankey, the then Chief Engineer of the State. Over the years, the park expanded to its current footprint of 300 acres, providing a vital green oasis amidst the bustling cityscape of Bangalore.",
+        "The park is renowned for its rich botanical diversity, hosting over 6,000 trees and plants, encompassing indigenous species and exotic introductions. This vibrant ecosystem provides an emerald sanctuary and oxygen lung for the rapidly developing metropolis.",
+        "Dotted amongst the verdant landscapes are numerous red-stone colonial buildings, marble statues of historical luminaries, and elegant pavilions. Structures like the Seshadri Iyer Memorial Hall, which houses the State Central Library, add a distinctly intellectual and historical charm to the natural beauty of the park."
+      ],
+      image1: "https://media.istockphoto.com/id/1149094895/photo/cubbon-park.jpg?s=612x612&w=0&k=20&c=pM85nFTIfE_tS1sInw9X9qD10v9MWeTqR5XIfmJ1_6Y=",
+      image2: "https://media.istockphoto.com/id/471850383/photo/karnataka-high-court-bangalore-india.jpg?s=612x612&w=0&k=20&c=Jd24yE1k5rG3XJ5d5y9q0E9v1J0K4V6V4T7o9L6q3G0="
+    },
+    video: {
+      title: "A Walk Through Time",
+      subtitle: "EXPLORING THE GREEN HEART",
+      youtubeId: "J8uQp-A0a6g"
+    },
+    galleryTitle: "Botanical Archives",
+    gallerySubtitle: "A CURATED GLIMPSE INTO NATURE'S ARTISTRY",
+    gallery: [
+      "https://karnatakatourism.org/_next/image/?url=https%3A%2F%2Fweb-cms.karnatakatourism.org%2Fwp-content%2Fuploads%2F2025%2F06%2FIMG_3526-1-scaled-e1750679261602.jpg&w=3840&q=75",
+      "https://media.istockphoto.com/id/1149094895/photo/cubbon-park.jpg?s=612x612&w=0&k=20&c=pM85nFTIfE_tS1sInw9X9qD10v9MWeTqR5XIfmJ1_6Y=",
+      "https://media.istockphoto.com/id/471850383/photo/karnataka-high-court-bangalore-india.jpg?s=612x612&w=0&k=20&c=Jd24yE1k5rG3XJ5d5y9q0E9v1J0K4V6V4T7o9L6q3G0=",
+      "https://bangalore247.in/wp-content/uploads/2021/04/Cubbon-Park-Bangalore-1-1024x683.jpg"
+    ],
+    address: "Kasturba Road, Sampangi Rama Nagar, Bengaluru, 560001",
     theme: {
       textRoot: "text-[#eeeae2]", 
       borderLight: "border-[#eeeae2]/30"
