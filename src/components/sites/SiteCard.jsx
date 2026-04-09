@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SiteCard = ({ imageSrc, imageAlt, typeTag, title, description, url }) => {
+const SiteCard = ({ imageSrc, imageAlt, typeTag, title, description, url, distance }) => {
   const navigate = useNavigate();
   
   return (
@@ -13,8 +13,13 @@ const SiteCard = ({ imageSrc, imageAlt, typeTag, title, description, url }) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         {typeTag && (
-          <div className="absolute top-4 left-4 bg-[#210000] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1">
+          <div className="absolute top-4 left-4 bg-[#210000] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 shadow-sm">
             {typeTag}
+          </div>
+        )}
+        {distance !== undefined && (
+          <div className="absolute top-4 right-4 bg-white/95 text-[#210000] text-[10px] font-bold uppercase tracking-widest px-3 py-1 shadow-md backdrop-blur-sm shadow-[#210000]/10">
+            {distance} km
           </div>
         )}
       </div>
