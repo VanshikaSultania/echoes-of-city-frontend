@@ -11,11 +11,6 @@ const HeritageSection = () => {
             <h2 className="font-headline text-4xl md:text-6xl text-primary font-bold mb-6">The Heritage Collection</h2>
             <p className="text-on-surface-variant text-lg">Curated artifacts and architectural blueprints from the Mysore Kingdom era. Each story is a fragment of the city's soul.</p>
           </div>
-          <div className="flex items-center gap-4 bg-surface-container-low p-2 rounded-xl">
-            <span className="px-6 py-2 bg-white rounded-lg shadow-sm font-label text-xs uppercase font-bold text-primary tracking-widest cursor-pointer">All Sites</span>
-            <span className="px-6 py-2 font-label text-xs uppercase text-on-surface-variant tracking-widest cursor-pointer hover:text-primary transition-colors">Palaces</span>
-            <span className="px-6 py-2 font-label text-xs uppercase text-on-surface-variant tracking-widest cursor-pointer hover:text-primary transition-colors">Gardens</span>
-          </div>
         </div>
         
         <HeritageCollection />

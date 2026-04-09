@@ -103,7 +103,7 @@ const RegistrationForm = () => {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user_id', data.user_id);
-      navigate('/');
+      navigate('/sites');
     } catch (err) {
       const data = err.response?.data;
       const firstError =

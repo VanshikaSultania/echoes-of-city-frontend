@@ -8,7 +8,6 @@ const TopNavBar = () => {
           Echoes of the City
         </div>
         <div className="hidden md:flex items-center space-x-12">
-          <a className="font-['Newsreader'] tracking-tight text-lg text-[#4A0404] dark:text-[#ebe8e2] border-b-2 border-[#d4af37] pb-1" href="#">Home</a>
           <a className="font-['Newsreader'] tracking-tight text-lg text-stone-600 dark:text-stone-400 hover:text-[#4A0404] dark:hover:text-[#fcf9f3] transition-colors hover:opacity-80" href="#">Sites</a>
           <a className="font-['Newsreader'] tracking-tight text-lg text-stone-600 dark:text-stone-400 hover:text-[#4A0404] dark:hover:text-[#fcf9f3] transition-colors hover:opacity-80" href="#">Map</a>
           <a className="font-['Newsreader'] tracking-tight text-lg text-stone-600 dark:text-stone-400 hover:text-[#4A0404] dark:hover:text-[#fcf9f3] transition-colors hover:opacity-80" href="#">About</a>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -17,10 +18,10 @@ const Hero = () => {
             Uncovering Bangalore’s hidden history through a living digital archive. Experience the architectural whispers of the Garden City’s royal past.
           </p>
           <div className="flex flex-wrap gap-8 items-center">
-            <button className="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-medium text-lg flex items-center gap-3 hover:shadow-xl hover:shadow-secondary/20 transition-all">
+            <Link to="/signup" className="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-medium text-lg flex items-center gap-3 hover:shadow-xl hover:shadow-secondary/20 transition-all">
               Explore the Archive
               <span className="material-symbols-outlined">arrow_forward</span>
-            </button>
+            </Link>
             <a className="text-white font-label text-sm uppercase tracking-widest border-b border-secondary/50 pb-1 hover:border-secondary transition-colors" href="#map">View Map</a>
           </div>
         </div>
