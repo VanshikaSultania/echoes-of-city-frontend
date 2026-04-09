@@ -187,6 +187,9 @@ export const heritageSites = {
     latLng: "12.9765,77.5946",
     heroImage: "https://karnatakatourism.org/_next/image/?url=https%3A%2F%2Fweb-cms.karnatakatourism.org%2Fwp-content%2Fuploads%2F2025%2F06%2FIMG_3526-1-scaled-e1750679261602.jpg&w=3840&q=75",
     title: ["Cubbon", "Park"],
+    heroTitleColor: "text-[#6b4423]",
+    heroSubtitleColor: "text-[#6b4423]",
+    metricTextColor: "text-[#6b4423]",
     heroTitleWeight: "font-black",
     subtitle: "The Lung of the City",
     metrics: [
@@ -201,21 +204,24 @@ export const heritageSites = {
         "The park is renowned for its rich botanical diversity, hosting over 6,000 trees and plants, encompassing indigenous species and exotic introductions. This vibrant ecosystem provides an emerald sanctuary and oxygen lung for the rapidly developing metropolis.",
         "Dotted amongst the verdant landscapes are numerous red-stone colonial buildings, marble statues of historical luminaries, and elegant pavilions. Structures like the Seshadri Iyer Memorial Hall, which houses the State Central Library, add a distinctly intellectual and historical charm to the natural beauty of the park."
       ],
-      image1: "https://media.istockphoto.com/id/1149094895/photo/cubbon-park.jpg?s=612x612&w=0&k=20&c=pM85nFTIfE_tS1sInw9X9qD10v9MWeTqR5XIfmJ1_6Y=",
-      image2: "https://media.istockphoto.com/id/471850383/photo/karnataka-high-court-bangalore-india.jpg?s=612x612&w=0&k=20&c=Jd24yE1k5rG3XJ5d5y9q0E9v1J0K4V6V4T7o9L6q3G0="
+      image1: "https://karnatakatourism.org/wp-content/uploads/2020/06/cabbon-park.jpg",
+      image2: "https://www.trawell.in/admin/images/upload/148027234CubbonPark_Main.jpg"
     },
     video: {
       title: "A Walk Through Time",
       subtitle: "EXPLORING THE GREEN HEART",
-      youtubeId: "J8uQp-A0a6g"
+      youtubeId: "CldXQKZHzP8"
     },
     galleryTitle: "Botanical Archives",
     gallerySubtitle: "A CURATED GLIMPSE INTO NATURE'S ARTISTRY",
     gallery: [
       "https://karnatakatourism.org/_next/image/?url=https%3A%2F%2Fweb-cms.karnatakatourism.org%2Fwp-content%2Fuploads%2F2025%2F06%2FIMG_3526-1-scaled-e1750679261602.jpg&w=3840&q=75",
-      "https://media.istockphoto.com/id/1149094895/photo/cubbon-park.jpg?s=612x612&w=0&k=20&c=pM85nFTIfE_tS1sInw9X9qD10v9MWeTqR5XIfmJ1_6Y=",
-      "https://media.istockphoto.com/id/471850383/photo/karnataka-high-court-bangalore-india.jpg?s=612x612&w=0&k=20&c=Jd24yE1k5rG3XJ5d5y9q0E9v1J0K4V6V4T7o9L6q3G0=",
-      "https://bangalore247.in/wp-content/uploads/2021/04/Cubbon-Park-Bangalore-1-1024x683.jpg"
+      "https://blogs.revv.co.in/blogs/wp-content/uploads/2020/01/Cubbon-Park-Bangalore.jpeg",
+      "https://images.moneycontrol.com/static-mcnews/2025/11/20251128050415_1-cubbon-park-flower-show.jpg",
+      "https://www.holidify.com/images/cmsuploads/compressed/C1_20170905112652.PNG",
+      "https://lh5.googleusercontent.com/p/AF1QipM_UUqPUb-1QJM7kx3iYFjYgEiaeT1Edb5Nb0FN=w1080-k-no",
+      "https://media.istockphoto.com/id/1416330148/photo/the-beautiful-gardens-of-the-cubbon-park-in-bangalore.jpg?s=612x612&w=0&k=20&c=qYH-2xrvF70qi0tCmX5w8o4AfwLMtVJOK2q6GDL_ru4=",
+      "https://im.whatshot.in/img/2021/Feb/shutterstock-1504044086-cropped-1573544266-1612504516.jpg"
     ],
     address: "Kasturba Road, Sampangi Rama Nagar, Bengaluru, 560001",
     theme: {
