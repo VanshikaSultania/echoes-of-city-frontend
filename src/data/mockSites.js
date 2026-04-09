@@ -39,6 +39,7 @@ export const mockSites = [
     description: "Home to a massive 16th-century monolith of Nandi, the celestial bull. A sacred site that anchors the ancient neighborhood of Basavanagudi.",
     imageSrc: "https://temple.yatradham.org/public/Product/temple/temple_hzOxj2OQ_202408171754050.jpeg",
     imageAlt: "Bull Temple Nandi",
+    url: "/site/bull-temple",
     lat: 12.9416,
     lng: 77.5683
   },

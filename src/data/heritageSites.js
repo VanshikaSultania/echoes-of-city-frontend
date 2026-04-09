@@ -127,5 +127,48 @@ export const heritageSites = {
       textRoot: "text-[#eeeae2]", 
       borderLight: "border-[#eeeae2]/30"
     }
+  },
+  "bull-temple": {
+    id: "bull-temple",
+    placeId: "ChIJW-X-t4gUrjsRo3nO-YlY-_0",
+    latLng: "12.9416,77.5683",
+    heroImage: "https://temple.yatradham.org/public/Product/temple/temple_hzOxj2OQ_202408171754050.jpeg",
+    title: ["Bull", "Temple"],
+    heroTitleWeight: "font-bold",
+    subtitle: "The Sacred Guardian of Basavanagudi",
+    metrics: [
+      { label: "ESTABLISHED", value: "1537" },
+      { label: "STYLE", value: "Dravidian" },
+      { label: "FESTIVAL", value: "Kadalekai Parishe", span: true }
+    ],
+    history: {
+      title: "A Monument to Local Legends",
+      paragraphs: [
+        "Built in 1537 by Kempe Gowda I, the founder of Bangalore, the Bull Temple (also known as Nandi Temple or Dodda Basavana Gudi) is situated on the picturesque Bugle Hill in the historic neighborhood of Basavanagudi. It is exclusively dedicated to Nandi, the celestial bull and vehicle of Lord Shiva.",
+        "The story behind its construction is rooted in local folklore. A wild bull was said to be ravaging the groundnut crops of local farmers. To appease the magnificent creature, Kempe Gowda erected this temple. Even today, the first harvest of groundnuts is offered to Nandi during the lively annual 'Kadalekai Parishe' (Groundnut Fair).",
+        "The centerpiece of the temple is the colossal Nandi statue, carved entirely from a single granite rock. Measuring 4.5 meters in height and 6 meters in length, the statue is continuously rubbed with coconut oil and butter by devotees, giving it a striking charcoal-black sheen."
+      ],
+      image1: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bulltemple-_nandi.jpg",
+      image2: "https://st.depositphotos.com/3141445/4279/i/450/depositphotos_42790933-stock-photo-bull-temple-bangalore.jpg"
+    },
+    video: {
+      title: "Basavanagudi's Beating Heart",
+      subtitle: "EXPERIENCE THE KADALEKAI PARISHE",
+      youtubeId: "W7o-1s68t1g"
+    },
+    galleryTitle: "The Sacred Archive",
+    gallerySubtitle: "A CURATED GLIMPSE INTO DEVOTION",
+    gallery: [
+      "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bulltemple-_nandi.jpg",
+      "https://images.livemint.com/img/2021/11/29/1140x641/ANI-20211129202-0_1638204646700_1638204673837.jpg",
+      "https://curlytales.com/wp-content/uploads/2019/11/The-Kadalekai-Parishe-Festival-7.jpg",
+      "https://static.toiimg.com/photo/45239921.cms",
+      "https://st.depositphotos.com/3141445/4279/i/450/depositphotos_42790933-stock-photo-bull-temple-bangalore.jpg"
+    ],
+    address: "Bugle Rock Rd, Basavanagudi, Bengaluru, 560004",
+    theme: {
+      textRoot: "text-[#eeeae2]", 
+      borderLight: "border-[#eeeae2]/30"
+    }
   }
 };
