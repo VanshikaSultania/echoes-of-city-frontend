@@ -26,7 +26,8 @@ const mockSites = [
     title: "Vidhana Soudha",
     description: "The seat of the state legislature, this Neo-Dravidian masterpiece stands as a colossal testament to independent India's architectural ambition.",
     imageSrc: "https://t4.ftcdn.net/jpg/07/52/84/27/240_F_752842748_TMfPQUmG4kffW5uaZTdjj9yVLYDeRSm2.jpg",
-    imageAlt: "Vidhana Soudha"
+    imageAlt: "Vidhana Soudha",
+    url: "/site/vidhana-soudha"
   },
   {
     id: 4,

@@ -85,5 +85,46 @@ export const heritageSites = {
       textRoot: "text-[#111111]",
       borderLight: "border-[#111111]/30"
     }
+  },
+  "vidhana-soudha": {
+    id: "vidhana-soudha",
+    placeId: "ChIJpwxMCXIWrjsRfedVMltgoP8",
+    latLng: "12.9796,77.5908",
+    heroImage: "https://t4.ftcdn.net/jpg/07/52/84/27/240_F_752842748_TMfPQUmG4kffW5uaZTdjj9yVLYDeRSm2.jpg",
+    title: ["Vidhana", "Soudha"],
+    subtitle: "",
+    metrics: [
+      { label: "COMPLETED", value: "1956" },
+      { label: "DISTANCE", value: "1.5 km City Center" },
+      { label: "ADMISSION", value: "External View Only" },
+      { label: "RATING", value: "4.6 / 5.0" }
+    ],
+    history: {
+      title: "An Architectural Marvel of\nNeo-Dravidian Splendor",
+      paragraphs: [
+        "Conceived by Kengal Hanumanthaiah, the then Chief Minister of Mysore, the Vidhana Soudha was born out of a desire to create a spectacular edifice that would overshadow the colonial structures of the Cantonment. Built entirely from Bangalore granite, this colossal structure stands as a testament to independent India's architectural ambition and democratic ethos.",
+        "The building features sweeping staircases, massive pillars, and majestic domes, incorporating elements from Chalukyan, Hoysala, and Vijayanagara styles. The central dome, crowned by the four-headed lion, the state emblem of India, is a focal point of this architectural marvel. Across the imposing entrance arch reads the profound inscription: 'Government's Work is God's Work', setting the tone for the democratic processes within.",
+        "Today, it houses the Karnataka State Legislature and the Secretariat. While public access to the interiors is restricted, the sheer scale and grandeur of the exterior make it one of the most magnificent public buildings in the country, especially when illuminated on weekends."
+      ],
+      image1: "https://upload.wikimedia.org/wikipedia/commons/2/23/Vidhana_Soudha_001.jpg",
+      image2: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Vidhana_Soudha_Bangalore.jpg"
+    },
+    video: {
+      title: "The Heart of Democracy",
+      subtitle: "A GLIMPSE OF THE NEO-DRAVIDIAN MASTERPIECE",
+      youtubeId: "D8eA3QvEYjQ" // Placeholder
+    },
+    galleryTitle: "The Visual Archive",
+    gallerySubtitle: "A CURATED COLLECTION OF DEMOCRATIC GRANDEUR",
+    gallery: [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Vidhana_Soudha_Bangalore_2011.jpg/1200px-Vidhana_Soudha_Bangalore_2011.jpg",
+      "https://images.unsplash.com/photo-1596484552834-8a58f8bba4cc",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7b/Vidhan_Saudha%2C_Bengaluru.jpg"
+    ],
+    address: "Dr Ambedkar Veedhi, Sampangi Rama Nagar, Bengaluru, 560001",
+    theme: {
+      textRoot: "text-[#eeeae2]", 
+      borderLight: "border-[#eeeae2]/30"
+    }
   }
 };
