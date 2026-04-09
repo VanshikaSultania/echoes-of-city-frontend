@@ -7,7 +7,7 @@ import SiteGrid from '../components/sites/SiteGrid';
 const SitesPage = () => {
   return (
     <div className="bg-[#fbf9f6] min-h-screen text-stone-900 font-sans flex flex-col">
-      <Navbar />
+      <Navbar showLinks={true} />
       <main className="flex-1">
         <CollectionHero />
         <SiteGrid />

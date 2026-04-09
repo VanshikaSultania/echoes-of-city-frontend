@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeritageCard = ({ imageSrc, imageAlt, title, description, isOffset }) => {
   return (
@@ -11,10 +12,10 @@ const HeritageCard = ({ imageSrc, imageAlt, title, description, isOffset }) => {
         <div className="space-y-4">
           <h3 className="font-headline text-3xl italic">{title}</h3>
           <p className="text-white/80 line-clamp-3 font-light mb-6 blur-sm group-hover:blur-none transition-all duration-500">{description}</p>
-          <button className="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-secondary/90 transition-colors opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 duration-500">
-            View Details
+          <Link to="/signup" className="bg-secondary text-on-secondary px-6 py-3 rounded-lg font-medium text-sm inline-flex items-center gap-2 hover:bg-secondary/90 transition-colors opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 duration-500">
+            Signup
             <span className="material-symbols-outlined text-sm">open_in_new</span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

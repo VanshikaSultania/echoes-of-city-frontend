@@ -5,15 +5,15 @@ const HeritageCollection = () => {
   const collections = [
     {
       id: 1,
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuA2sJTlqAyEX0qTd9Q6EwRoXg1O4Y-9BcDkaE9rZILpTCFrQEtiPd39b6wAHjpTYXLCYT2q9z70tBWu6lwZwOtGJBH-rqVLA4XgCsAyMKwCQ-wdVmnHveAKtq6DNtG6bu9gQEkUMuGv2URoSGOQegNlsuKvcX4MdeG7ua_F8xNqrSk00-JYyQJXDIYtdmR0ZxECwk-cFWMDkkSZS2mHMgPWcvie97tRj5X-MIM9sNXAKvn8moIAww5yFqiiJenLtCfz2sezJ9vN55D1",
+      imageSrc: "https://images.pexels.com/photos/23973679/pexels-photo-23973679.jpeg",
       imageAlt: "Bangalore Palace Exterior",
-      title: "The Tudor Echo: Bangalore Palace",
+      title: "Bangalore Palace",
       description: "The Rev. J. Garrett, the first Principal of the Central High School, now known as Central College, started constructing this palace in 1862...",
       isOffset: false
     },
     {
       id: 2,
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuBh3z_iYvmQcY90zsAgRaRAbbnGgqSgsLkhjbH3arIU9aXJ7QVWvtQMWZf0pdPJckPSbvptOrL2U84IDHlSxwdUyMK_85FkGojBB3Npw8K8cm3PAN_dPRhkY-6EAWw8EyfY4gkMruVtAY7kqcfR1SG0KyNi5Mf-Q_7mQFQOwyMmnjn7lCFtqp3Lpmdlg2E6oIZ4kS2aELtzfoAyE__dsAp2h20Z4NA4bXVZrCGkKijPSZL6JmKxzHFLBCRCQCbhwmjXbdKL1byb0qJd",
+      imageSrc: "https://media.istockphoto.com/id/178845414/photo/tipu-sultans-summer-palace.jpg?s=612x612&w=0&k=20&c=QCVIS7GrgLfh8MaBmdjrQFNeQ71BgP-K322BJVkGTmo=",
       imageAlt: "Tipu Sultan Summer Palace",
       title: "Abode of Happiness",
       description: "A masterpiece of Indo-Islamic architecture, this teakwood structure served as the summer residence of the Mysore ruler...",
@@ -32,7 +32,7 @@ const HeritageCollection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {collections.map(site => (
-        <HeritageCard 
+        <HeritageCard
           key={site.id}
           imageSrc={site.imageSrc}
           imageAlt={site.imageAlt}
