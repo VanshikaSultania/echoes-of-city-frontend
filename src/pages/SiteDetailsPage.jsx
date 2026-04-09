@@ -145,14 +145,16 @@ const SiteDetailsPage = () => {
               {siteData.subtitle}
             </p>
 
-            <div className={`grid grid-cols-2 md:grid-cols-${siteData.metrics.length > 3 ? '4' : '3'} gap-8 md:gap-12 pt-10 border-t ${themeBorder}`}>
-              {siteData.metrics.map((metric, idx) => (
-                <div key={idx} className={metric.span ? "col-span-2 md:col-span-1 border-t md:border-transparent pt-6 md:pt-0" : ""}>
-                  <p className={`text-[10px] tracking-widest uppercase opacity-90 mb-2 font-bold ${themeText}`}>{metric.label}</p>
-                  <p className={`font-headline italic text-3xl font-medium drop-shadow-sm ${themeText}`}>{metric.value}</p>
-                </div>
-              ))}
-            </div>
+            {siteData.metrics.length > 0 && (
+              <div className={`grid grid-cols-2 md:grid-cols-${siteData.metrics.length > 3 ? '4' : '3'} gap-8 md:gap-12 pt-10 border-t ${themeBorder}`}>
+                {siteData.metrics.map((metric, idx) => (
+                  <div key={idx} className={metric.span ? "col-span-2 md:col-span-1 border-t md:border-transparent pt-6 md:pt-0" : ""}>
+                    <p className={`text-[10px] tracking-widest uppercase opacity-90 mb-2 font-bold ${themeText}`}>{metric.label}</p>
+                    <p className={`font-headline italic text-3xl font-medium drop-shadow-sm ${themeText}`}>{metric.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
