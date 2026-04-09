@@ -49,12 +49,10 @@ export const heritageSites = {
     latLng: "12.9593,77.5736",
     heroImage: "https://media.istockphoto.com/id/178845414/photo/tipu-sultans-summer-palace.jpg?s=612x612&w=0&k=20&c=QCVIS7GrgLfh8MaBmdjrQFNeQ71BgP-K322BJVkGTmo=",
     title: ["Tipu Sultan's", "Summer Palace"],
+    heroTitleWeight: "font-black",
     subtitle: 'The "Rash-e-Jannat" (Envy of Heaven)',
     metrics: [
       { label: "ESTABLISHED", value: "1791" },
-      { label: "DISTANCE", value: "3.5 km City Center" },
-      { label: "ADMISSION", value: "INR 15" },
-      { label: "RATING", value: "4.6 / 5.0" }
     ],
     history: {
       title: "An Edifice of\nTeak and Triumph",
@@ -74,14 +72,18 @@ export const heritageSites = {
     galleryTitle: "The Visual Archive",
     gallerySubtitle: "A CURATED COLLECTION OF ARCHITECTURAL GRANDEUR",
     gallery: [
-      "https://upload.wikimedia.org/wikipedia/commons/c/cb/Tipu_Sultan%27s_Summer_Palace%2C_Bangalore.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tipu_Sultan%27s_Summer_Palace%2C_Bangalore_-_Interiors_3.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/77/Tipu_Sultan%27s_Summer_Palace%2C_Bangalore_-_Interiors_2.jpg"
+      "https://s7ap1.scene7.com/is/image/incredibleindia/2-tipu-sultan-summer-palace-bangalore-karnataka-attr-hero-1?qlt=82&ts=1742170071820",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/tipu-sultans-summer-palace-bengaluru-karnataka-8-musthead-hero?qlt=82&ts=1742173337731",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/tipu-sultans-summer-palace-bengaluru-karnataka-11-musthead-hero?qlt=82&ts=1742166120887",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/tipu-sultans-summer-palace-bengaluru-karnataka-9-musthead-hero?qlt=82&ts=1742169939226",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/2-tipu-sultan-summer-palace-bangalore-karnataka-attr-hero-1?qlt=82&ts=1742170071820",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/tipu-sultans-summer-palace-bengaluru-karnataka-12-musthead-hero?qlt=82&ts=1742202884641",
+      "https://s7ap1.scene7.com/is/image/incredibleindia/tipu-sultans-summer-palace-bengaluru-karnataka-17-musthead-hero?qlt=82&ts=1742186828089"
     ],
     address: "Albert Victor Road, Chamrajpet, Bengaluru, 560018",
     theme: {
-      textRoot: "text-[#eeeae2]", // Since the user's mockup uses white text on the completely full-cover image
-      borderLight: "border-[#eeeae2]/30"
+      textRoot: "text-[#111111]",
+      borderLight: "border-[#111111]/30"
     }
   }
 };

@@ -49,10 +49,10 @@ const SiteDetailsPage = () => {
         const placeRes = await axios.get(placeUrl);
 
         if (placeRes.data.status !== "OK") {
-           // We'll optionally ignore it rather than crash if we just want basic layout testing without API
-           console.warn(`Places API Warning: ${placeRes.data.status}`);
+          // We'll optionally ignore it rather than crash if we just want basic layout testing without API
+          console.warn(`Places API Warning: ${placeRes.data.status}`);
         } else if (isMounted) {
-           setPlaceData(placeRes.data.result);
+          setPlaceData(placeRes.data.result);
         }
 
         // 1.5 Fetch Nearby Places (Restaurant, Hotel, Hospital)
@@ -134,7 +134,6 @@ const SiteDetailsPage = () => {
     <div className="font-body text-on-surface bg-surface min-h-screen">
       {/* Navbar */}
       <nav className="absolute top-0 w-full z-50 px-8 py-6 flex items-center justify-between text-on-tertiary-fixed-variant font-bold">
-        <div className="font-headline text-2xl italic tracking-wide cursor-pointer" onClick={() => navigate('/')}>The Living Archive</div>
       </nav>
 
       {/* Hero Section */}
@@ -148,7 +147,7 @@ const SiteDetailsPage = () => {
 
         <div className={`relative z-10 w-full max-w-7xl mx-auto flex flex-col drop-shadow-sm`}>
           <div className="max-w-3xl">
-            <h1 className={`font-headline text-6xl md:text-8xl lg:text-[130px] italic leading-tight md:leading-none mb-6 drop-shadow-lg font-bold ${themeText}`}>
+            <h1 className={`font-headline text-6xl md:text-8xl lg:text-[130px] italic leading-tight md:leading-none mb-6 drop-shadow-lg ${siteData.heroTitleWeight || 'font-bold'} ${siteData.heroTitleColor || themeText}`}>
               {siteData.title[0]} <br /> {siteData.title[1]}
             </h1>
             <p className={`text-xl md:text-2xl font-light opacity-100 max-w-2xl mb-16 tracking-wide drop-shadow-md ${themeText}`}>
@@ -343,9 +342,9 @@ const SiteDetailsPage = () => {
             <div className="flex items-center gap-3">
               <div className="flex text-secondary opacity-90 text-sm">
                 {[1, 2, 3, 4, 5].map(star => (
-                   <span key={star} className="material-symbols-outlined text-[18px]">
-                     {placeData?.rating >= star ? 'star' : placeData?.rating >= star - 0.5 ? 'star_half' : 'star_outline'}
-                   </span>
+                  <span key={star} className="material-symbols-outlined text-[18px]">
+                    {placeData?.rating >= star ? 'star' : placeData?.rating >= star - 0.5 ? 'star_half' : 'star_outline'}
+                  </span>
                 ))}
               </div>
               <span className="font-headline italic text-xl">{placeData ? placeData.rating : siteData.metrics.find(m => m.label === "RATING")?.value || "4.8"} / 5</span>
