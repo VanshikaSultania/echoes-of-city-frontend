@@ -93,8 +93,13 @@ export const heritageSites = {
     heroImage: "https://t4.ftcdn.net/jpg/07/52/84/27/240_F_752842748_TMfPQUmG4kffW5uaZTdjj9yVLYDeRSm2.jpg",
     title: ["Vidhana", "Soudha"],
     heroTitleColor: "text-[#4b2e1f]",
+    metricTextColor: "text-[#3b2418]",
     subtitle: "",
-    metrics: [],
+    metrics: [
+      { label: "COMPLETED", value: "1956" },
+      { label: "STYLE", value: "Neo-Dravidian" },
+      { label: "ROLE", value: "State Legislature", span: true }
+    ],
     history: {
       title: "An Architectural Marvel of\nNeo-Dravidian Splendor",
       paragraphs: [
@@ -134,6 +139,9 @@ export const heritageSites = {
     latLng: "12.9416,77.5683",
     heroImage: "https://temple.yatradham.org/public/Product/temple/temple_hzOxj2OQ_202408171754050.jpeg",
     title: ["Bull", "Temple"],
+    heroTitleColor: "text-[#4b2e1f]",
+    heroSubtitleColor: "text-[#4b2e1f]",
+    metricTextColor: "text-[#4b2e1f]",
     heroTitleWeight: "font-bold",
     subtitle: "The Sacred Guardian of Basavanagudi",
     metrics: [
@@ -148,22 +156,24 @@ export const heritageSites = {
         "The story behind its construction is rooted in local folklore. A wild bull was said to be ravaging the groundnut crops of local farmers. To appease the magnificent creature, Kempe Gowda erected this temple. Even today, the first harvest of groundnuts is offered to Nandi during the lively annual 'Kadalekai Parishe' (Groundnut Fair).",
         "The centerpiece of the temple is the colossal Nandi statue, carved entirely from a single granite rock. Measuring 4.5 meters in height and 6 meters in length, the statue is continuously rubbed with coconut oil and butter by devotees, giving it a striking charcoal-black sheen."
       ],
-      image1: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bulltemple-_nandi.jpg",
-      image2: "https://st.depositphotos.com/3141445/4279/i/450/depositphotos_42790933-stock-photo-bull-temple-bangalore.jpg"
+      image1: "https://www.holidify.com/images/cmsuploads/compressed/Outside_the_Bull_Temple,_Bangalore,_India_20170916114001.jpg",
+      image2: "https://chalbanjare.com/crm/sys_images/Shri_Doddabasavanna_Temple1765526202.webp"
     },
     video: {
       title: "Basavanagudi's Beating Heart",
       subtitle: "EXPERIENCE THE KADALEKAI PARISHE",
-      youtubeId: "W7o-1s68t1g"
+      youtubeId: "B1oqWZMttGc"
     },
     galleryTitle: "The Sacred Archive",
     gallerySubtitle: "A CURATED GLIMPSE INTO DEVOTION",
     gallery: [
-      "https://upload.wikimedia.org/wikipedia/commons/e/ec/Bulltemple-_nandi.jpg",
-      "https://images.livemint.com/img/2021/11/29/1140x641/ANI-20211129202-0_1638204646700_1638204673837.jpg",
-      "https://curlytales.com/wp-content/uploads/2019/11/The-Kadalekai-Parishe-Festival-7.jpg",
-      "https://static.toiimg.com/photo/45239921.cms",
-      "https://st.depositphotos.com/3141445/4279/i/450/depositphotos_42790933-stock-photo-bull-temple-bangalore.jpg"
+      "https://www.holidify.com/images/cmsuploads/compressed/Outside_the_Bull_Temple,_Bangalore,_India_20170916114001.jpg",
+      "https://2.bp.blogspot.com/-GaVSOTt92jU/WsiCIVIfbTI/AAAAAAAAo1Q/KCQJxsdEHeItrp0-FzEyWJ6g3Qg3dTOkACLcBGAs/s1600/basavanagudi-darshan-entrance-to-the-bull-temple..jpg",
+      "https://lh3.googleusercontent.com/p/AF1QipOfMT_tY7NhQyX73nrCiZLL14ROX_ffwjUQxAi1=s680-w680-h510",
+      "https://chalbanjare.com/crm/sys_images/Shri_Doddabasavanna_Temple1765526202.webp",
+      "https://lh3.googleusercontent.com/tLeuMOByFiaxjfv3nbm-I6p-Dc34HxU_RvAAGH8rszfjnnsJYHMUVhWfSj8e7MhknfSmWQOx5iT7VDZDqCiqLtJ8DLRgPKF6eg=w3840-h2160-c-rw-v3",
+      "https://eindiatourism.in/wp-content/uploads/2023/05/Nandi_Temple_252276307-1-640x440.jpeg",
+      "https://thumbs.dreamstime.com/b/bull-temple-detail-bangalore-india-28249071.jpg"
     ],
     address: "Bugle Rock Rd, Basavanagudi, Bengaluru, 560004",
     theme: {
