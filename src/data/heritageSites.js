@@ -92,13 +92,9 @@ export const heritageSites = {
     latLng: "12.9796,77.5908",
     heroImage: "https://t4.ftcdn.net/jpg/07/52/84/27/240_F_752842748_TMfPQUmG4kffW5uaZTdjj9yVLYDeRSm2.jpg",
     title: ["Vidhana", "Soudha"],
+    heroTitleColor: "text-[#4b2e1f]",
     subtitle: "",
-    metrics: [
-      { label: "COMPLETED", value: "1956" },
-      { label: "DISTANCE", value: "1.5 km City Center" },
-      { label: "ADMISSION", value: "External View Only" },
-      { label: "RATING", value: "4.6 / 5.0" }
-    ],
+    metrics: [],
     history: {
       title: "An Architectural Marvel of\nNeo-Dravidian Splendor",
       paragraphs: [
@@ -106,20 +102,25 @@ export const heritageSites = {
         "The building features sweeping staircases, massive pillars, and majestic domes, incorporating elements from Chalukyan, Hoysala, and Vijayanagara styles. The central dome, crowned by the four-headed lion, the state emblem of India, is a focal point of this architectural marvel. Across the imposing entrance arch reads the profound inscription: 'Government's Work is God's Work', setting the tone for the democratic processes within.",
         "Today, it houses the Karnataka State Legislature and the Secretariat. While public access to the interiors is restricted, the sheer scale and grandeur of the exterior make it one of the most magnificent public buildings in the country, especially when illuminated on weekends."
       ],
-      image1: "https://upload.wikimedia.org/wikipedia/commons/2/23/Vidhana_Soudha_001.jpg",
-      image2: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Vidhana_Soudha_Bangalore.jpg"
+      image1: "https://thumbs.dreamstime.com/b/vidhana-soudha-bangalore-india-the-vidhana-soudha-located-in-bengaluru-seat-state-legislature-of-karnataka-105169934.jpg",
+      image2: "https://thumbs.dreamstime.com/b/vidhana-soudha-bangalore-vidhana-soudha-government-building-bangalore-152008902.jpg"
     },
     video: {
       title: "The Heart of Democracy",
       subtitle: "A GLIMPSE OF THE NEO-DRAVIDIAN MASTERPIECE",
-      youtubeId: "D8eA3QvEYjQ" // Placeholder
+      youtubeId: "Vjj2OCS3Cl4" // Placeholder
     },
     galleryTitle: "The Visual Archive",
     gallerySubtitle: "A CURATED COLLECTION OF DEMOCRATIC GRANDEUR",
-    gallery: [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Vidhana_Soudha_Bangalore_2011.jpg/1200px-Vidhana_Soudha_Bangalore_2011.jpg",
-      "https://images.unsplash.com/photo-1596484552834-8a58f8bba4cc",
-      "https://upload.wikimedia.org/wikipedia/commons/7/7b/Vidhan_Saudha%2C_Bengaluru.jpg"
+    gallery: [     
+      "https://cdn.pixabay.com/photo/2014/03/22/17/11/suvarna-vidhana-soudha-292732__480.jpg",
+      "https://mir-s3-cdn-cf.behance.net/project_modules/1400/80737620134923.562e619eab40a.jpg",
+      "http://www.thehistoryhub.com/wp-content/uploads/2014/04/Vidhana-Soudha-Inside.jpg",
+      "https://live.staticflickr.com/5544/11638045765_c8ca0fdcfe_b.jpg",
+      "https://wallpapercave.com/wp/wp15408952.jpg",
+      "https://eindiatourism.in/wp-content/uploads/2023/05/Vidhana_Soudha_in_night_4.jpg",
+      "https://thumbs.dreamstime.com/b/sunset-vidhana-soudha-state-legislature-building-bangalore-india-32486844.jpg",
+      "https://www.exploreourindia.com/backend/web/images/post/big/1201_Vidhana%20Soudha%20Karnataka.webp"
     ],
     address: "Dr Ambedkar Veedhi, Sampangi Rama Nagar, Bengaluru, 560001",
     theme: {
