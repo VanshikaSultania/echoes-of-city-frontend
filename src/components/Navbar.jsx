@@ -16,7 +16,7 @@ const Navbar = ({ showLinks = false }) => {
           <div className="hidden md:flex items-center gap-10 font-serif italic text-lg tracking-tight">
             <Link className={path === '/sites' ? activeClass : inactiveClass} to="/sites">Sites</Link>
             <Link className={path === '/map' ? activeClass : inactiveClass} to="/map">Map</Link>
-            <a className={inactiveClass} href="#">About</a>
+            <Link className={path === '/about' ? activeClass : inactiveClass} to="/about">About</Link>
           </div>
         )}
         <div className="flex items-center gap-6">
