@@ -231,7 +231,7 @@ export const heritageSites = {
   },
   "lalbagh-glass-house": {
     id: "lalbagh-glass-house",
-    placeId: "ChIJeYTSgc4VrjsR9YsJGBkCJ_o",
+    placeId: "ChIJHdPykcEVrjsRIr4v35kLEY4",
     latLng: "12.9507,77.5848",
     heroImage: "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
     title: ["Lalbagh", "Botanical Garden"],
