@@ -14,6 +14,7 @@ const SiteDetailsPage = () => {
 
   const galleryRef = useRef(null);
   const [distanceData, setDistanceData] = useState(null);
+  const [haversineDistance, setHaversineDistance] = useState(null);
   const [placeData, setPlaceData] = useState(null);
   const [mapsError, setMapsError] = useState(null);
   const [isMapsLoading, setIsMapsLoading] = useState(true);
@@ -59,14 +60,21 @@ const SiteDetailsPage = () => {
           setNearbyPlaces({ restaurant, hotel, hospital });
         }
 
-        // 2. Fetch Distance Matrix (if geolocation available)
+        // 2. Fetch Distance Matrix + Haversine (if geolocation available)
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             async (position) => {
-              const originLatLng = `${position.coords.latitude},${position.coords.longitude}`;
+              const { latitude, longitude } = position.coords;
+              const originLatLng = `${latitude},${longitude}`;
               if (isMounted) setUserLocation(originLatLng);
-              const distUrl = `/google-maps-api/maps/api/distancematrix/json?origins=${originLatLng}&destinations=${siteData.latLng}&key=${API_KEY}`;
 
+              // Haversine distance — same formula used on site cards
+              const [siteLat, siteLng] = siteData.latLng.split(',').map(Number);
+              const hDist = calculateDistance(latitude, longitude, siteLat, siteLng);
+              if (isMounted) setHaversineDistance(hDist);
+
+              // Road distance from Distance Matrix API (supplementary)
+              const distUrl = `/google-maps-api/maps/api/distancematrix/json?origins=${originLatLng}&destinations=${siteData.latLng}&key=${API_KEY}`;
               try {
                 const distRes = await axios.get(distUrl);
                 if (distRes.data.status !== "OK") {
@@ -238,11 +246,16 @@ const SiteDetailsPage = () => {
               <span className="material-symbols-outlined mt-1">location_on</span>
               <div>
                 <p className="text-[10px] tracking-widest uppercase text-on-surface-variant mb-1">
-                  {distanceData ? "FROM YOUR LOCATION" : "FROM CITY CENTER"}
+                  {haversineDistance ? "FROM YOUR LOCATION" : "FROM CITY CENTER"}
                 </p>
                 <p className="font-headline text-2xl italic text-on-surface mb-2">
-                  {distanceData ? `${distanceData.distance.text} (${distanceData.duration.text})` : "Approx. 3.5 km"}
+                  {haversineDistance ? `${haversineDistance} km away` : "Approx. 3.5 km"}
                 </p>
+                {distanceData && (
+                  <p className="text-xs text-on-surface-variant mb-2 font-light">
+                    🚗 {distanceData.distance.text} by road · {distanceData.duration.text}
+                  </p>
+                )}
                 <p className="text-sm font-light text-on-surface-variant">{siteData.address}</p>
               </div>
             </div>
