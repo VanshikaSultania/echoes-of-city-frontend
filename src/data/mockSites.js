@@ -61,6 +61,7 @@ export const mockSites = [
     description: "Commissioned by Hyder Ali in 1760, this botanical garden features a spectacular iron-framed glass conservatory inspired by London's Crystal Palace.",
     imageSrc: "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
     imageAlt: "Lalbagh Glass House",
+    url: "/site/lalbagh-glass-house",
     lat: 12.9507,
     lng: 77.5848
   },

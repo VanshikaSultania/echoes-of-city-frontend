@@ -228,5 +228,53 @@ export const heritageSites = {
       textRoot: "text-[#eeeae2]", 
       borderLight: "border-[#eeeae2]/30"
     }
+  },
+  "lalbagh-glass-house": {
+    id: "lalbagh-glass-house",
+    placeId: "ChIJeYTSgc4VrjsR9YsJGBkCJ_o",
+    latLng: "12.9507,77.5848",
+    heroImage: "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
+    title: ["Lalbagh", "Botanical Garden"],
+    heroTitleColor: "text-[#1a3a1a]",
+    heroSubtitleColor: "text-[#1a3a1a]",
+    metricTextColor: "text-[#1a3a1a]",
+    heroTitleWeight: "font-black",
+    subtitle: "The Garden of the Red Flowers",
+    metrics: [
+      { label: "ESTABLISHED", value: "1760" },
+      { label: "AREA", value: "240 Acres" },
+      { label: "COMMISSIONED BY", value: "Hyder Ali", span: true }
+    ],
+    history: {
+      title: "A Royal Garden Born\nof Mughal Vision",
+      paragraphs: [
+        "Laid out by Hyder Ali in 1760 on the southern fringes of Bangalore, Lalbagh — meaning 'Red Garden' — was inspired by the magnificent Mughal gardens of Northern India. Its name is believed to derive from the profusion of red roses that once carpeted its grounds. Tipu Sultan, Hyder Ali's son, later expanded the garden and introduced numerous exotic plant species from Persia, Afghanistan, and France.",
+        "After the fall of Tipu Sultan in 1799, the British took over Lalbagh and commissioned Scottish botanist William Roxburgh to formalize the garden as a botanical research centre. Under the supervision of horticulturists like John Cameron, who served as its superintendent for over 30 years, Lalbagh grew into one of the finest botanical gardens in Asia, housing over 1,854 species of plants from across the globe.",
+        "The iconic Glass House, constructed in 1889 and inspired by London's famed Crystal Palace, remains Lalbagh's crown jewel. Built with an iron framework and glass panels, it hosts the celebrated biannual Flower Shows on Republic Day and Independence Day — events that draw over a million visitors each year and have become an indelible part of Bangalore's cultural identity."
+      ],
+      image1: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hyder_Ali.jpg/220px-Hyder_Ali.jpg",
+      image2: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lalbagh_Glass_House_Bangalore.jpg/1200px-Lalbagh_Glass_House_Bangalore.jpg"
+    },
+    video: {
+      title: "Inside the Glass House",
+      subtitle: "A CINEMATIC WALK THROUGH LALBAGH",
+      youtubeId: "k3bQFoVJSEQ"
+    },
+    galleryTitle: "The Botanical Archive",
+    gallerySubtitle: "A CURATED COLLECTION OF LALBAGH'S SPLENDOUR",
+    gallery: [
+      "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lalbagh_Glass_House_Bangalore.jpg/1200px-Lalbagh_Glass_House_Bangalore.jpg",
+      "https://www.holidify.com/images/cmsuploads/compressed/lalbagh-botanical-garden-bangalore-230819040846.jpg",
+      "https://www.trawell.in/admin/images/upload/Lalbagh_Botanical_Garden_Main.jpg",
+      "https://karnatakatourism.org/wp-content/uploads/2020/06/Lal-Bagh.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Lalbagh_lake.jpg",
+      "https://media.istockphoto.com/id/1300534212/photo/lalbagh-botanical-garden-bengaluru-india.jpg?s=612x612&w=0&k=20&c=HMmjNEKe8XPv_1J0EFfwI-7BZZ7fzFAZFkAA9Y8wBi4="
+    ],
+    address: "Lalbagh Road, Mavalli, Bengaluru, Karnataka 560004",
+    theme: {
+      textRoot: "text-[#eeeae2]",
+      borderLight: "border-[#eeeae2]/30"
+    }
   }
 };
