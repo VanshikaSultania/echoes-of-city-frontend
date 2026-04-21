@@ -72,6 +72,7 @@ export const mockSites = [
     description: "An ancient mud fort dating back to the 8th century, home to the Panchalingeswara temple and rare stone inscriptions that chart the city's earliest history.",
     imageSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHkkjBQXcXJUuK4r92v0uYkPp2_5HGes71iA&s",
     imageAlt: "Begur Fort Ruins",
+    url: "/site/begur-fort",
     lat: 12.8821,
     lng: 77.6256
   },
