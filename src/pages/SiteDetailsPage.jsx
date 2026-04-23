@@ -1,16 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { heritageSites } from '../data/heritageSites';
+import { calculateDistance } from '../utils/distance';
+// import { heritageSites } from '../data/heritageSites';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-import { calculateDistance } from '../utils/distance';
 
 const SiteDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const siteData = heritageSites[id];
+  const [siteData, setSiteData] = useState(null);
+  const [isSiteLoading, setIsSiteLoading] = useState(true);
 
   const galleryRef = useRef(null);
   const [distanceData, setDistanceData] = useState(null);
@@ -23,12 +25,28 @@ const SiteDetailsPage = () => {
   const [isNearbyLoading, setIsNearbyLoading] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
 
+  // 1. Fetch backend site data
   useEffect(() => {
-    // If invalid ID is accessed directly, bounce them back to sites
-    if (!siteData) {
-      navigate('/sites');
-      return;
-    }
+    let isMounted = true;
+    const fetchSite = async () => {
+      try {
+        setIsSiteLoading(true);
+        const res = await axios.get(`${API_URL}/api/sites/${id}/`);
+        if (isMounted) setSiteData(res.data);
+      } catch (err) {
+        console.error("Failed to fetch site data:", err);
+        if (isMounted) navigate('/sites');
+      } finally {
+        if (isMounted) setIsSiteLoading(false);
+      }
+    };
+    fetchSite();
+    return () => { isMounted = false; };
+  }, [id, navigate]);
+
+  // 2. Fetch maps data when siteData is ready
+  useEffect(() => {
+    if (!siteData) return;
 
     let isMounted = true;
     const fetchMapsData = async () => {
@@ -105,6 +123,15 @@ const SiteDetailsPage = () => {
     fetchMapsData();
     return () => { isMounted = false; };
   }, [id, navigate, siteData]);
+
+  if (isSiteLoading) {
+    return (
+      <div className="min-h-screen bg-surface flex items-center justify-center font-headline text-2xl italic text-on-surface">
+        <span className="material-symbols-outlined animate-spin mr-3">progress_activity</span>
+        Unearthing history...
+      </div>
+    );
+  }
 
   if (!siteData) return null; // Prevent flash before redirect
 
