@@ -233,7 +233,7 @@ export const heritageSites = {
     id: "lalbagh-glass-house",
     placeId: "ChIJHdPykcEVrjsRIr4v35kLEY4",
     latLng: "12.9507,77.5848",
-    heroImage: "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
+    heroImage: "https://gumlet.assettype.com/homegrown/2023-04/e0496c82-b789-4698-8fd7-89026c8b088d/lalbagh2.jpeg?auto=format%2Ccompress&w=1200",
     title: ["Lalbagh", "Botanical Garden"],
     heroTitleColor: "text-[#1a3a1a]",
     heroSubtitleColor: "text-[#1a3a1a]",
@@ -252,24 +252,24 @@ export const heritageSites = {
         "After the fall of Tipu Sultan in 1799, the British took over Lalbagh and commissioned Scottish botanist William Roxburgh to formalize the garden as a botanical research centre. Under the supervision of horticulturists like John Cameron, who served as its superintendent for over 30 years, Lalbagh grew into one of the finest botanical gardens in Asia, housing over 1,854 species of plants from across the globe.",
         "The iconic Glass House, constructed in 1889 and inspired by London's famed Crystal Palace, remains Lalbagh's crown jewel. Built with an iron framework and glass panels, it hosts the celebrated biannual Flower Shows on Republic Day and Independence Day — events that draw over a million visitors each year and have become an indelible part of Bangalore's cultural identity."
       ],
-      image1: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hyder_Ali.jpg/220px-Hyder_Ali.jpg",
-      image2: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lalbagh_Glass_House_Bangalore.jpg/1200px-Lalbagh_Glass_House_Bangalore.jpg"
+      image1: "https://www.citybit.in/wp-content/uploads/2024/05/Things-to-See-at-Lalbagh-Botanical-Garden-1024x576.jpg",
+      image2: "https://www.tusktravel.com/blog/wp-content/uploads/2023/08/Lalbagh-Botanical-Garden-Bangalore.jpg"
     },
     video: {
       title: "Inside the Glass House",
       subtitle: "A CINEMATIC WALK THROUGH LALBAGH",
-      youtubeId: "k3bQFoVJSEQ"
+      youtubeId: "EBWcFcRBqdA"
     },
     galleryTitle: "The Botanical Archive",
     gallerySubtitle: "A CURATED COLLECTION OF LALBAGH'S SPLENDOUR",
     gallery: [
-      "https://media.gettyimages.com/id/516572685/photo/glasshouse-at-lalbagh-gardens-bangalore-india.jpg?s=612x612&w=gi&k=20&c=0x2ImAR3de8zrMZq4Hs4oYYJqfeyMqge2Prk1LZIjp8=",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lalbagh_Glass_House_Bangalore.jpg/1200px-Lalbagh_Glass_House_Bangalore.jpg",
-      "https://www.holidify.com/images/cmsuploads/compressed/lalbagh-botanical-garden-bangalore-230819040846.jpg",
-      "https://www.trawell.in/admin/images/upload/Lalbagh_Botanical_Garden_Main.jpg",
-      "https://karnatakatourism.org/wp-content/uploads/2020/06/Lal-Bagh.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Lalbagh_lake.jpg",
-      "https://media.istockphoto.com/id/1300534212/photo/lalbagh-botanical-garden-bengaluru-india.jpg?s=612x612&w=0&k=20&c=HMmjNEKe8XPv_1J0EFfwI-7BZZ7fzFAZFkAA9Y8wBi4="
+      "https://www.citybit.in/wp-content/uploads/2024/05/Things-to-See-at-Lalbagh-Botanical-Garden-1024x576.jpg",
+      "https://sceneloc8.com/wp-content/uploads/2024/03/Lalbagh-Botanical-Garden-2.png",
+      "https://www.tusktravel.com/blog/wp-content/uploads/2023/08/Lalbagh-Botanical-Garden-Bangalore.jpg",
+      "https://images.trvl-media.com/media/content/shared/images/travelguides/destination/622/Lalbagh-Botanical-Gardens-98413.jpg",
+      "https://thumbs.dreamstime.com/b/lalbagh-botanical-gardens-bangalore-karnataka-lalbagh-botanical-gardens-view-bangalore-karnataka-india-116604066.jpg",
+      "https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/sites/2/2017/08/09084958/Lalbagh4.jpg",
+      "https://www.re-thinkingthefuture.com/wp-content/uploads/2020/08/A1588-1-8.jpg"
     ],
     address: "Lalbagh Road, Mavalli, Bengaluru, Karnataka 560004",
     theme: {
