@@ -281,11 +281,11 @@ export const heritageSites = {
     id: "begur-fort",
     placeId: "ChIJUeP-lDRrrjsR1wQxWlw79Y4",
     latLng: "12.8821,77.6256",
-    heroImage: "https://live.staticflickr.com/65535/51998917213_4f30b1b63b_b.jpg",
+    heroImage: "https://3.bp.blogspot.com/_QQ7MLfwirhM/TDBJOLlEDlI/AAAAAAAAAAM/cqnKoq_AAEk/s1600/Begur+033.JPG",
     title: ["Begur", "Fort"],
-    heroTitleColor: "text-[#f5efe6]",
-    heroSubtitleColor: "text-[#f5efe6]",
-    metricTextColor: "text-[#f5efe6]",
+    heroTitleColor: "text-[#3c1414]",
+    heroSubtitleColor: "text-[#3c1414]",
+    metricTextColor: "text-[#3c1414]",
     heroTitleWeight: "font-black",
     subtitle: "The Threshold of Bengaluru's Earliest Memory",
     metrics: [
@@ -294,30 +294,30 @@ export const heritageSites = {
       { label: "SIGNIFICANCE", value: "Oldest Bengaluru Inscription", span: true }
     ],
     history: {
-      title: "Where the Name\\nBengaluru Was Born",
+      title: "Where the Name Bengaluru Was Born",
       paragraphs: [
         "Nestled 15 km south of the city, Begur Fort — or Begur Kote — is one of the most historically significant sites in the entire Bangalore region. The fortification dates to the rule of the Ganga dynasty in the 8th and 9th centuries CE, predating the founding of modern Bangalore by nearly seven hundred years. Before Kempe Gowda I established the city in 1537, Begur served as an important administrative seat and a thriving cultural nucleus.",
         "Within the fort complex stands the remarkable Panchalingeswara Temple — also known as the Begur Nageshwara Temple — a celebrated example of Dravidian architecture. The temple houses five Shivalingas within five separate sanctums, a rare architectural arrangement. Its intricate sculptural details, carved columns, and soaring gopuram have withstood over a millennium, quietly witnessing the rise and fall of empires.",
         "Perhaps Begur's most extraordinary claim to fame is a stone inscription dated 890 CE, discovered within the fort complex. This inscription contains one of the earliest written references to 'Bengaluru' — making it a foundational document in the city's recorded history. The inscription belongs to the era of the Rashtrakuta king Nitimarga and commemorates a brave warrior named Buttanachetty, who died in a battle near Bengaluru protecting cattle."
       ],
-      image1: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Begur_Nageshwara_Temple.jpg/1200px-Begur_Nageshwara_Temple.jpg",
-      image2: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Begur_Nageshwara_Temple_inscription.jpg/800px-Begur_Nageshwara_Temple_inscription.jpg"
+      image2: "https://2.bp.blogspot.com/-LEDgpx_dN8Q/XJUc1iRjWiI/AAAAAAAATns/VnBftSHBug8ZuCFYW7lfp2BOfyEKQuA8gCLcBGAs/s1600/10.%2BBegur%2BForts%2Bof%2BKarnataka-01.jpeg",
+      image1: "https://www.visitacostabrava.com/media/items/fullhd/cbca1-castillo-de-begur.jpg"
     },
     video: {
       title: "Echoes of the Gangas",
       subtitle: "A JOURNEY INTO BEGUR'S ANCIENT PAST",
-      youtubeId: "ZJqpSKUCrGo"
+      youtubeId: "EfIl7LkR-ec"
     },
     galleryTitle: "The Stone Archive",
     gallerySubtitle: "A CURATED RECORD OF BEGUR'S ANCIENT LEGACY",
     gallery: [
-      "https://live.staticflickr.com/65535/51998917213_4f30b1b63b_b.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Begur_Nageshwara_Temple.jpg/1200px-Begur_Nageshwara_Temple.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Begur_Nageshwara_Temple_inscription.jpg/800px-Begur_Nageshwara_Temple_inscription.jpg",
-      "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/articleimages/2023/02/07/begur.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHkkjBQXcXJUuK4r92v0uYkPp2_5HGes71iA&s",
-      "https://i.ytimg.com/vi/ZJqpSKUCrGo/maxresdefault.jpg",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPMriqAc98hTgG9nkXH2t8ZyCXxDZCEY_b4d7Y6q1bXzwPy2iFy8UH87YCpb_2xPLNkmFIzxrYPFvPYBNbp-UuGBgMy3joBFCuWi_LfqS98dYfT2LM6EEacrGLaKQf8gLDxS7-U5bhY0D/s1600/DSC_0041.JPG"
+      "https://2.bp.blogspot.com/-LEDgpx_dN8Q/XJUc1iRjWiI/AAAAAAAATns/VnBftSHBug8ZuCFYW7lfp2BOfyEKQuA8gCLcBGAs/s1600/10.%2BBegur%2BForts%2Bof%2BKarnataka-01.jpeg",
+      "https://www.visitacostabrava.com/media/items/fullhd/cbca1-castillo-de-begur.jpg",
+      "https://as1.ftcdn.net/v2/jpg/07/15/56/16/1000_F_715561627_nsK3WGuCagqR69lwnZklnfWsmkmQzICk.jpg",
+      "https://lakshmisharath.com/wp-content/uploads/2015/08/Begur-temple-1024x685.jpg",
+      "https://lakshmisharath.com/wp-content/uploads/2015/08/Begur-ruins.jpg",
+      "https://4.bp.blogspot.com/_WBP1wcS84JU/SgbIJta59bI/AAAAAAAAAV8/UENCAG8L2IU/s400/begur+side+view.jpg",
+      "https://3.bp.blogspot.com/_QQ7MLfwirhM/TDBJOLlEDlI/AAAAAAAAAAM/cqnKoq_AAEk/s1600/Begur+033.JPG"
     ],
     address: "Begur, South Bengaluru, Karnataka 560068",
     theme: {
