@@ -94,6 +94,7 @@ const SiteGrid = () => {
             <option value="place-PARK">Park</option>
             <option value="place-FORT">Fort</option>
             <option value="place-LAKE">Lake</option>
+            <option value="place-HILL">Hill</option>
             <option value="place-CIVIC">Civic</option>
           </optgroup>
         </select>
