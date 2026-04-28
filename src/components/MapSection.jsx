@@ -88,7 +88,7 @@ const MapSection = () => {
             className={`absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${isHovered ? 'opacity-100 pointer-events-none' : 'opacity-0 pointer-events-none'}`}
           >
             <h3 className="text-white font-headline text-4xl mb-6 transform transition-transform duration-500 font-bold tracking-wide drop-shadow-lg">Unlock the Full Map</h3>
-            <p className="text-white/90 text-lg mb-8 max-w-sm text-center px-4 font-body leading-relaxed drop-shadow-md">Sign up to explore all detailed layers, save your favorite heritage sites, and access exclusive content.</p>
+            <p className="text-white/90 text-lg mb-8 max-w-sm text-center px-4 font-body leading-relaxed drop-shadow-md">Sign up to explore all detailed layers and access exclusive content.</p>
             <button
               onClick={(e) => { e.stopPropagation(); navigate('/signup'); }}
               className={`bg-primary hover:bg-secondary text-surface hover:text-on-secondary px-10 py-4 rounded-full font-label tracking-widest uppercase transition-all duration-300 transform shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)] border-2 border-transparent hover:border-surface/20 ${isHovered ? 'pointer-events-auto scale-100 hover:scale-105' : 'scale-90 pointer-events-none'}`}
