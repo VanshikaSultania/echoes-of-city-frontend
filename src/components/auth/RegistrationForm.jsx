@@ -84,7 +84,7 @@ const RegistrationForm = () => {
     setIsLoading(true);
     try {
       const axios = await import('axios').then(m => m.default || m);
-      const res = await axios.post(`https://echoes-of-city-backend.onrender.com/api/auth/signup/`, formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/signup/`, formData, {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = res.data;
