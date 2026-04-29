@@ -25,6 +25,42 @@ const SiteDetailsPage = () => {
   const [isNearbyLoading, setIsNearbyLoading] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
 
+  const [reviewText, setReviewText] = useState("");
+  const [reviewRating, setReviewRating] = useState(5);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (!token) {
+      alert("Please log in to submit a review.");
+      return;
+    }
+    if (!reviewText.trim()) return;
+
+    try {
+      setIsSubmittingReview(true);
+      const res = await axios.post(`${API_URL}/api/sites/${id}/reviews/`, {
+        text: reviewText,
+        rating: reviewRating
+      }, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      
+      setSiteData({
+        ...siteData,
+        local_reviews: [res.data, ...(siteData.local_reviews || [])]
+      });
+      setReviewText("");
+      setReviewRating(5);
+    } catch (err) {
+      console.error("Failed to submit review", err);
+      alert("Failed to submit review. Please try again.");
+    } finally {
+      setIsSubmittingReview(false);
+    }
+  };
+
   // 1. Fetch backend site data
   useEffect(() => {
     let isMounted = true;
@@ -429,6 +465,74 @@ const SiteDetailsPage = () => {
         ) : (
           <div className="py-8 text-on-surface-variant text-sm">No reviews available.</div>
         )}
+
+        <div className="mt-20 border-t border-outline-variant pt-16">
+          <h3 className="font-headline text-3xl italic text-on-surface mb-8">Traveler Echoes</h3>
+          
+          <div className="bg-surface-container-low p-8 border border-outline-variant mb-12">
+            <h4 className="font-headline text-xl mb-6">Leave a Review</h4>
+            <form onSubmit={handleReviewSubmit}>
+              <div className="mb-6 flex items-center gap-2">
+                <span className="text-sm font-medium uppercase tracking-widest text-on-surface-variant">Rating:</span>
+                <div className="flex gap-1 cursor-pointer">
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <span 
+                      key={star} 
+                      onClick={() => setReviewRating(star)}
+                      className={`material-symbols-outlined text-2xl transition-colors ${reviewRating >= star ? 'text-secondary' : 'text-outline-variant hover:text-secondary/50'}`}
+                    >
+                      {reviewRating >= star ? 'star' : 'star_outline'}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <textarea 
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                placeholder="Share your experience at this heritage site..."
+                className="w-full bg-surface border border-outline-variant p-4 text-on-surface focus:outline-none focus:border-primary min-h-[120px] mb-6 resize-none"
+                required
+              />
+              <button 
+                type="submit" 
+                disabled={isSubmittingReview}
+                className="bg-primary text-on-primary px-8 py-3 uppercase tracking-widest text-xs font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+              >
+                {isSubmittingReview ? 'Submitting...' : 'Post Review'}
+              </button>
+            </form>
+          </div>
+
+          {siteData?.local_reviews && siteData.local_reviews.length > 0 ? (
+            <div className="space-y-6">
+              {siteData.local_reviews.map((review) => (
+                <div key={review.id} className="bg-surface-container-lowest p-6 border border-outline-variant/50">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-surface-variant text-on-surface-variant flex items-center justify-center rounded-full font-headline italic text-lg uppercase">
+                        {review.author_name[0]}
+                      </div>
+                      <div>
+                        <p className="font-headline italic text-lg text-on-surface">{review.author_name}</p>
+                        <p className="text-[10px] tracking-widest uppercase text-on-surface-variant">{review.relative_time_description}</p>
+                      </div>
+                    </div>
+                    <div className="flex text-secondary opacity-90 text-sm">
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <span key={star} className="material-symbols-outlined text-[16px]">
+                          {review.rating >= star ? 'star' : 'star_outline'}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="font-light text-on-surface-variant leading-relaxed">"{review.text}"</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-on-surface-variant text-sm italic">Be the first traveler to leave an echo.</p>
+          )}
+        </div>
       </section>
 
       {/* Footer */}
