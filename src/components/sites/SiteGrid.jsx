@@ -7,7 +7,8 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const SiteGrid = () => {
   const [sites, setSites] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [distanceFilter, setDistanceFilter] = useState('');
+  const [placeFilter, setPlaceFilter] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -59,43 +60,48 @@ const SiteGrid = () => {
   }, []);
 
   const filteredSites = sites.filter(site => {
-    if (!filter) return true;
-    
-    if (filter.startsWith('distance-')) {
-      const maxDistance = parseInt(filter.split('-')[1], 10);
-      return site.distance !== undefined && site.distance <= maxDistance;
+    let matchesDistance = true;
+    let matchesPlace = true;
+
+    if (distanceFilter) {
+      const maxDistance = parseInt(distanceFilter, 10);
+      matchesDistance = site.distance !== undefined && site.distance <= maxDistance;
     }
-    
-    if (filter.startsWith('place-')) {
-      const placeType = filter.split('-')[1];
-      return site.typeTag === placeType;
+
+    if (placeFilter) {
+      matchesPlace = site.typeTag === placeFilter;
     }
-    
-    return true;
+
+    return matchesDistance && matchesPlace;
   });
 
   return (
     <div className="max-w-screen-2xl mx-auto px-8 py-16">
-      <div className="flex justify-end mb-8">
+      <div className="flex justify-end mb-8 gap-4">
         <select 
-          value={filter} 
-          onChange={(e) => setFilter(e.target.value)}
+          value={distanceFilter} 
+          onChange={(e) => setDistanceFilter(e.target.value)}
           className="border border-stone-300 rounded px-4 py-2 bg-white text-stone-700 focus:outline-none focus:border-stone-500 shadow-sm"
         >
-          <option value="">Filter By...</option>
-          <optgroup label="Distance">
-            <option value="distance-5">5 km</option>
-            <option value="distance-10">10 km</option>
-            <option value="distance-15">15 km</option>
-          </optgroup>
-          <optgroup label="Places">
-            <option value="place-TEMPLE">Temple</option>
-            <option value="place-PALACE">Palace</option>
-            <option value="place-PARK">Park</option>
-            <option value="place-FORT">Fort</option>
-            <option value="place-LAKE">Lake</option>
-            <option value="place-CIVIC">Civic</option>
-          </optgroup>
+          <option value="">Any Distance</option>
+          <option value="5">Within 5 km</option>
+          <option value="10">Within 10 km</option>
+          <option value="15">Within 15 km</option>
+        </select>
+        
+        <select 
+          value={placeFilter} 
+          onChange={(e) => setPlaceFilter(e.target.value)}
+          className="border border-stone-300 rounded px-4 py-2 bg-white text-stone-700 focus:outline-none focus:border-stone-500 shadow-sm"
+        >
+          <option value="">Any Place Type</option>
+          <option value="TEMPLE">Temple</option>
+          <option value="PALACE">Palace</option>
+          <option value="PARK">Park</option>
+          <option value="FORT">Fort</option>
+          <option value="LAKE">Lake</option>
+          <option value="CIVIC">Civic</option>
+          <option value="HILL">Hill</option>
         </select>
       </div>
 

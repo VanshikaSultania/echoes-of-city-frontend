@@ -21,7 +21,7 @@ const SiteDetailsPage = () => {
   const [mapsError, setMapsError] = useState(null);
   const [isMapsLoading, setIsMapsLoading] = useState(true);
   const [showAllReviews, setShowAllReviews] = useState(false);
-  const [nearbyPlaces, setNearbyPlaces] = useState({ restaurant: null, hotel: null, hospital: null });
+  const [nearbyPlaces, setNearbyPlaces] = useState({ restaurant: null, hotel: null, shopping: null, park: null });
   const [isNearbyLoading, setIsNearbyLoading] = useState(true);
   const [userLocation, setUserLocation] = useState(null);
 
@@ -65,17 +65,34 @@ const SiteDetailsPage = () => {
           setPlaceData(placeRes.data.result);
         }
 
-        // 1.5 Fetch Nearby Places (Restaurant, Hotel, Hospital)
+        // 1.5 Fetch Nearby Places (Restaurant, Hotel, Shopping, Park)
         setIsNearbyLoading(true);
-        const types = ['restaurant', 'lodging', 'hospital'];
+        const types = ['restaurant', 'lodging', 'shopping_mall', 'park'];
         const nearbyPromises = types.map(type =>
           axios.get(`/google-maps-api/maps/api/place/nearbysearch/json?location=${siteData.latLng}&radius=3000&type=${type}&key=${API_KEY}`)
-            .then(res => res.data.status === "OK" ? res.data.results[0] : null)
-            .catch(() => null)
+            .then(res => res.data.status === "OK" ? res.data.results : [])
+            .catch(() => [])
         );
-        const [restaurant, hotel, hospital] = await Promise.all(nearbyPromises);
+        const [restaurantResults, hotelResults, shoppingResults, parkResults] = await Promise.all(nearbyPromises);
+        
+        const usedPlaceIds = new Set();
+        const pickUniquePlace = (results) => {
+          for (const place of results) {
+            if (!usedPlaceIds.has(place.place_id)) {
+              usedPlaceIds.add(place.place_id);
+              return place;
+            }
+          }
+          return null;
+        };
+
+        const restaurant = pickUniquePlace(restaurantResults);
+        const hotel = pickUniquePlace(hotelResults);
+        const shopping = pickUniquePlace(shoppingResults);
+        const park = pickUniquePlace(parkResults);
+
         if (isMounted) {
-          setNearbyPlaces({ restaurant, hotel, hospital });
+          setNearbyPlaces({ restaurant, hotel, shopping, park });
         }
 
         // 2. Fetch Distance Matrix + Haversine (if geolocation available)
@@ -123,6 +140,42 @@ const SiteDetailsPage = () => {
     fetchMapsData();
     return () => { isMounted = false; };
   }, [id, navigate, siteData]);
+
+  const renderNearbyCard = (place, icon, defaultTitle, defaultDesc) => {
+    return (
+      <div className="bg-surface-container-low border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden h-full rounded-xl shadow-sm">
+        {place?.photos?.[0] ? (
+          <div className="h-48 w-full overflow-hidden relative">
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+            <img 
+              src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${place.photos[0].photo_reference}&key=${API_KEY}`} 
+              alt={place?.name || defaultTitle} 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            />
+            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full z-20 shadow-sm">
+              <span className="material-symbols-outlined text-primary text-sm block">{icon}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="h-48 w-full bg-surface-variant/30 flex items-center justify-center relative">
+            <span className="material-symbols-outlined text-5xl text-on-surface-variant/30">{icon}</span>
+          </div>
+        )}
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="font-headline text-xl italic mb-2 relative z-10 line-clamp-1">{place ? place.name : defaultTitle}</h3>
+          <p className="text-xs font-light text-on-surface-variant leading-relaxed mb-4 relative z-10">{defaultDesc}</p>
+          {place && (
+            <div className="flex items-center justify-between mt-auto relative z-10 w-full">
+              {place.rating && (
+                <div className="flex items-center text-xs font-bold tracking-widest text-secondary"><span className="material-symbols-outlined text-[14px] mr-1">star</span>{place.rating}</div>
+              )}
+              <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto"><span className="material-symbols-outlined text-[12px] mr-1">location_on</span>{getDistanceText(place)}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   if (isSiteLoading) {
     return (
@@ -324,47 +377,11 @@ const SiteDetailsPage = () => {
             Extracting Local Insights...
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Restaurant */}
-            <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
-              <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">restaurant_menu</span>
-              <h3 className="font-headline text-2xl italic mb-3 relative z-10">{nearbyPlaces.restaurant ? nearbyPlaces.restaurant.name : "Local Dining"}</h3>
-              <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-4 relative z-10">Top rated local dining spot located nearby.</p>
-              {nearbyPlaces.restaurant && (
-                <div className="flex items-center justify-between mt-auto relative z-10 w-full">
-                  {nearbyPlaces.restaurant.rating && (
-                    <div className="flex items-center text-xs font-bold tracking-widest text-secondary"><span className="material-symbols-outlined text-[14px] mr-1">star</span>{nearbyPlaces.restaurant.rating}</div>
-                  )}
-                  <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto"><span className="material-symbols-outlined text-[12px] mr-1">location_on</span>{getDistanceText(nearbyPlaces.restaurant)}</div>
-                </div>
-              )}
-            </div>
-            {/* Hotel */}
-            <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
-              <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">bed</span>
-              <h3 className="font-headline text-2xl italic mb-3 relative z-10">{nearbyPlaces.hotel ? nearbyPlaces.hotel.name : "Local Lodging"}</h3>
-              {nearbyPlaces.hotel && (
-                <div className="flex items-center justify-between mt-auto relative z-10 w-full">
-                  {nearbyPlaces.hotel.rating && (
-                    <div className="flex items-center text-xs font-bold tracking-widest text-secondary"><span className="material-symbols-outlined text-[14px] mr-1">star</span>{nearbyPlaces.hotel.rating}</div>
-                  )}
-                  <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto"><span className="material-symbols-outlined text-[12px] mr-1">location_on</span>{getDistanceText(nearbyPlaces.hotel)}</div>
-                </div>
-              )}
-            </div>
-            {/* Hospital */}
-            <div className="bg-surface-container-low p-8 border border-transparent hover:border-outline-variant transition-colors group cursor-pointer flex flex-col relative overflow-hidden">
-              <span className="material-symbols-outlined mb-8 text-on-surface-variant group-hover:text-primary transition-colors relative z-10">local_hospital</span>
-              <h3 className="font-headline text-2xl italic mb-3 relative z-10">{nearbyPlaces.hospital ? nearbyPlaces.hospital.name : "Local Hospital"}</h3>
-              {nearbyPlaces.hospital && (
-                <div className="flex items-center justify-between mt-auto relative z-10 w-full">
-                  {nearbyPlaces.hospital.rating && (
-                    <div className="flex items-center text-xs font-bold tracking-widest text-secondary"><span className="material-symbols-outlined text-[14px] mr-1">star</span>{nearbyPlaces.hospital.rating}</div>
-                  )}
-                  <div className="flex items-center text-[10px] font-bold tracking-widest text-on-surface-variant opacity-80 uppercase ml-auto"><span className="material-symbols-outlined text-[12px] mr-1">location_on</span>{getDistanceText(nearbyPlaces.hospital)}</div>
-                </div>
-              )}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {renderNearbyCard(nearbyPlaces.restaurant, "restaurant_menu", "Local Dining", "Top rated local dining spot located nearby.")}
+            {renderNearbyCard(nearbyPlaces.hotel, "bed", "Local Lodging", "Comfortable stays for your visit.")}
+            {renderNearbyCard(nearbyPlaces.shopping, "shopping_bag", "Shopping Mall", "Discover local markets and retail stores.")}
+            {renderNearbyCard(nearbyPlaces.park, "park", "Local Park", "Relax in nearby green spaces.")}
           </div>
         )}
       </section>

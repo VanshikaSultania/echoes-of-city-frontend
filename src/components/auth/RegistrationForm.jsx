@@ -76,6 +76,11 @@ const RegistrationForm = () => {
     e.preventDefault();
     setError('');
 
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
     if (formData.password !== formData.confirm_password) {
       setError('Passwords do not match.');
       return;
@@ -102,6 +107,7 @@ const RegistrationForm = () => {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user_id', data.user_id);
+      if (data.email) localStorage.setItem('email', data.email);
       navigate('/sites');
     } catch (err) {
       const data = err.response?.data;

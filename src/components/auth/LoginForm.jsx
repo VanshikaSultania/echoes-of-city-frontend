@@ -114,6 +114,7 @@ const LoginForm = () => {
       const storage = rememberMe ? localStorage : sessionStorage;
       storage.setItem('token', data.token);
       storage.setItem('user_id', String(data.user_id));
+      if (data.email) storage.setItem('email', data.email);
 
       navigate('/sites');
     } catch {
