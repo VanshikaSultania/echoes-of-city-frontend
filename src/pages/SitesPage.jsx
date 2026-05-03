@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CollectionHero from '../components/sites/CollectionHero';
 import SiteGrid from '../components/sites/SiteGrid';
-import NearbyPlaces from '../components/sites/nearbyplaces';
+import NearbyPlaces from '../components/sites/NearbyPlaces';
 
 const SitesPage = () => {
   return (
