@@ -106,8 +106,8 @@ const NearbyPlaces = () => {
             lat: place.geometry.location.lat,
             lng: place.geometry.location.lng,
             distance: parseFloat(calculateDistance(lat, lng, place.geometry.location.lat, place.geometry.location.lng)),
-            type: place.types?.[0]?.toUpperCase(),
-            originalTypes: place.types
+            type: place.types?.[0]?.toUpperCase() || 'LANDMARK',
+            originalTypes: place.types || []
           });
         }
       }
@@ -139,7 +139,7 @@ const NearbyPlaces = () => {
 
   const filteredPlaces = allNearbyPlaces.filter(place => {
     if (activeCategory === 'ALL') return true;
-    return place.originalTypes.some(t => t.toUpperCase() === activeCategory);
+    return (place.originalTypes || []).some(t => t.toUpperCase() === activeCategory);
   }).slice(0, 12);
 
   if (!userLocation && !isLoading && !error) return null;
@@ -242,7 +242,7 @@ const NearbyPlaces = () => {
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
                 <div className="absolute top-4 left-4 bg-primary text-on-primary text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 shadow-lg">
-                  {place.type.replace(/_/g, ' ')}
+                  {(place.type || 'LANDMARK').replace(/_/g, ' ')}
                 </div>
                 <div className="absolute top-4 right-4 bg-surface/90 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1.5 shadow-lg border border-white/20">
                   {place.distance} km away
