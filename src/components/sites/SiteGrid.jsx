@@ -10,6 +10,7 @@ const SiteGrid = () => {
   const [distanceFilter, setDistanceFilter] = useState('');
   const [placeFilter, setPlaceFilter] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [geoError, setGeoError] = useState(null);
 
   useEffect(() => {
     const fetchSites = async () => {
@@ -47,6 +48,7 @@ const SiteGrid = () => {
             },
             (err) => {
               console.warn("Geolocation Error:", err);
+              if (err.code === 1) setGeoError("Location access denied. Distance filtering disabled.");
             }
           );
         }
@@ -78,8 +80,8 @@ const SiteGrid = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-8 py-16">
       <div className="flex justify-end mb-8 gap-4">
-        <select 
-          value={distanceFilter} 
+        <select
+          value={distanceFilter}
           onChange={(e) => setDistanceFilter(e.target.value)}
           className="border border-stone-300 rounded px-4 py-2 bg-white text-stone-700 focus:outline-none focus:border-stone-500 shadow-sm"
         >
@@ -88,9 +90,9 @@ const SiteGrid = () => {
           <option value="10">Within 10 km</option>
           <option value="15">Within 15 km</option>
         </select>
-        
-        <select 
-          value={placeFilter} 
+
+        <select
+          value={placeFilter}
           onChange={(e) => setPlaceFilter(e.target.value)}
           className="border border-stone-300 rounded px-4 py-2 bg-white text-stone-700 focus:outline-none focus:border-stone-500 shadow-sm"
         >
@@ -110,7 +112,7 @@ const SiteGrid = () => {
           <SiteCard key={site.id} {...site} />
         ))}
       </div>
-      
+
       {isLoading && (
         <div className="text-center py-12 text-stone-500 font-headline italic text-xl">
           Loading heritage sites...
